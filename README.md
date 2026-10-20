@@ -34,6 +34,21 @@ python scripts/ingest.py                  # read -> mask -> chunk -> embed -> st
 python scripts/evaluate_search.py         # does search find the right page? (vector vs keyword vs hybrid)
 ```
 
+## Ask a question
+
+Needs `OPENAI_API_KEY` in `.env` (see `.env.example`) and a built library (`python scripts/ingest.py`).
+
+```bash
+python -m src.pipeline "How many days of paid sick leave do employees get?" --user ravi --role employee
+# [answered] Employees receive 8 days of paid sick leave per year. [DOC_2, page 1]
+
+python -m src.pipeline "What is Rebecca Heath's annual base salary?" --user ravi --role employee
+# [refused] Questions about a specific person (person) are limited to HR.
+
+python -m src.pipeline "What is Rebecca Heath's annual base salary?" --user priya --role hr
+# [answered] Rebecca Heath's annual base salary is $111,500.00, effective 03/01/2025. [personnel_file_heath.pdf, page 2]
+```
+
 ## Test data
 
 All test documents are fake. `scripts/make_fake_docs.py` invents 12 employees and 2 contractors with Faker (fixed seed, so the output is the same every run). It writes their details onto real blank IRS forms (W-2, W-4, W-9 from irs.gov) and onto generated payslips, HR files and a payroll register. Two documents are also saved as scanned images to test OCR. Phone numbers use the reserved 555-01xx range and emails use `example.com`.

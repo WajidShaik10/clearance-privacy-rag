@@ -124,6 +124,17 @@ class Vault:
             raise KeyError(f"No such placeholder: {placeholder}")
         return self._fernet.decrypt(row[0]).decode()
 
+    def log_event(self, user: str, role: str, allowed: bool, purpose: str) -> None:
+        """Log something other than a reveal, e.g. a refused question or a blocked answer.
+
+        Only who, when and why: never the question itself, which may hold a name or an SSN.
+        """
+        with self._db:
+            self._db.execute(
+                "INSERT INTO audit_log (at, user, role, placeholder, allowed, purpose) VALUES (?, ?, ?, ?, ?, ?)",
+                (_now(), user, role, "-", int(allowed), purpose),
+            )
+
     def placeholder_exists(self, placeholder: str) -> bool:
         """Used by the output guard: is this a real placeholder or one the AI made up?"""
         return self._db.execute("SELECT 1 FROM entries WHERE placeholder = ?", (placeholder,)).fetchone() is not None
