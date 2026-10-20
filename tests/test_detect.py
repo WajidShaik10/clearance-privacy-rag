@@ -112,6 +112,16 @@ def test_ai_name_with_trailing_line_break():
     assert ("PERSON", "Samantha Hooper") in found(text)
 
 
+def test_possessive_is_not_part_of_the_name():
+    # "Samantha Hooper's" must match the vault's "Samantha Hooper".
+    assert found("What is Samantha Hooper's taxpayer identification number?") == [("PERSON", "Samantha Hooper")]
+
+
+def test_apostrophe_and_hyphen_names():
+    assert found("Full Name: Pat O'Neil") == [("PERSON", "Pat O'Neil")]
+    assert found("Signature: Luce Lefort-Auger") == [("PERSON", "Luce Lefort-Auger")]
+
+
 def test_names_carry_across_pages_of_a_document():
     pages = ["Personnel File: Rebecca Heath", "Rebecca requested a schedule change."]
     assert [(f.type, f.value) for f in find_pii_in_document(pages, ROSTER)[1]] == [("PERSON", "Rebecca")]

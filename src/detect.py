@@ -158,7 +158,10 @@ def find_patterns(text: str) -> list[Finding]:
 
 TITLES = r"(?:Mr|Mrs|Ms|Mx|Dr)\.?"
 # One word of a name: "Lefort-Auger", "O'Neil", "Simón", or an initial "A."
-_NAME_PART = r"(?:[A-Z]\.|[A-ZÀ-Þ][^\W\d_]+(?:[-'’][A-ZÀ-Þ]?[^\W\d_]+)*)"
+# After an apostrophe comes a capital (O'Neil), so the possessive in "Hooper's" is not part of the name.
+_NAME_PART = (r"(?:[A-Z]\.|[A-ZÀ-Þ](?:[^\W\d_]+|(?=['’][A-ZÀ-Þ]))"
+              r"(?:-[A-ZÀ-Þ]?[^\W\d_]+|['’][A-ZÀ-Þ][^\W\d_]+)*)")
+POSSESSIVE = re.compile(r"['’]s?$")
 _NAME_VALUE = rf"(?P<value>{_NAME_PART}(?: {_NAME_PART}){{0,3}})"
 
 LABELLED = [
@@ -211,8 +214,9 @@ def _nlp():
 def find_ai_names(text: str) -> list[Finding]:
     found = []
     for ent in _nlp()(text).ents:
-        # spaCy sometimes includes a trailing line break ("Samantha Hooper\n"): trim it.
-        value = ent.text.strip()
+        # spaCy sometimes includes a trailing line break ("Samantha Hooper\n") or a
+        # possessive ("Samantha Hooper's"): trim both, so the name matches the vault.
+        value = POSSESSIVE.sub("", ent.text.strip())
         start = ent.start_char + ent.text.index(value)
         words = value.split()
         # Keep "First Last"-shaped answers only: 2-4 capitalised words, no digits or line breaks.
