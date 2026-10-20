@@ -9,6 +9,7 @@ the page(s) it appears on, so later milestones can measure what they catch.
 Outputs:
     data/fake_docs/*.pdf
     data/answer_key.json
+    data/hr_roster.json   (employee names only, standing in for an HR system export)
 """
 
 import io
@@ -31,6 +32,7 @@ ROOT = Path(__file__).resolve().parent.parent
 TEMPLATES = ROOT / "data" / "templates" / "irs"
 OUT = ROOT / "data" / "fake_docs"
 KEY = ROOT / "data" / "answer_key.json"
+ROSTER = ROOT / "data" / "hr_roster.json"
 
 SEED = 42
 fake = Faker("en_US")
@@ -477,6 +479,10 @@ def main() -> None:
         "contractors": contractors,
         "documents": [asdict(d) for d in docs],
     }, indent=2))
+
+    # Only employees: contractors, managers' contacts and emergency contacts are
+    # not in HR's employee list, so the detector must find those on its own.
+    ROSTER.write_text(json.dumps({"employees": [p.name for p in people]}, indent=2) + "\n")
 
     total = sum(len(d.pii) for d in docs)
     print(f"{len(docs)} documents, {sum(d.pages for d in docs)} pages, {total} private values in the answer key")

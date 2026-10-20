@@ -1,4 +1,4 @@
-# Privacy-Safe RAG
+ # Privacy-Safe RAG
 
 Ask plain-English questions about HR, payroll and tax documents and get answers with page citations, without exposing personal data. Real values (SSNs, names, salaries, bank details) are replaced with placeholders like `PERSON_1` before anything is stored or sent to an AI model. Only HR can see the real values, and every reveal is logged.
 
@@ -23,8 +23,11 @@ Ask plain-English questions about HR, payroll and tax documents and get answers 
 python3 -m venv .venv
 source .venv/bin/activate
 pip install -r requirements.txt
-python scripts/make_fake_docs.py   # 22 fake PDFs + data/answer_key.json
+python -m spacy download en_core_web_lg   # name-finding model (~400 MB)
+brew install tesseract                    # OCR for scanned pages
+python scripts/make_fake_docs.py          # 22 fake PDFs + data/answer_key.json
 pytest
+python scripts/evaluate_detection.py      # PII detection score vs the answer key
 ```
 
 ## Test data
