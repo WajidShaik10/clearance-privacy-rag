@@ -8,8 +8,8 @@ import pytest
 
 from scripts.evaluate_search import QUESTIONS
 from src.extract import extract_document
-from src.index import (MAX_BODY_TOKENS, SearchLibrary, bm25_scores, chunk_document, count_tokens,
-                       split_long_line)
+from src.index import (MAX_BODY_TOKENS, SearchLibrary, bm25_scores, build_in_clean_process, chunk_document,
+                       count_tokens, split_long_line)
 from src.mask import mask_document, mask_question
 from src.vault import Vault, new_keys
 
@@ -153,10 +153,16 @@ def test_documents_about_many_people_have_no_single_subject(chunks):
 # ---------------------------------------------------------------- the search library
 
 @pytest.fixture(scope="module")
-def library(tmp_path_factory, chunks):
-    lib = SearchLibrary(tmp_path_factory.mktemp("index"))
-    lib.add([c for doc in chunks.values() for c in doc])
-    return lib
+def library_path(tmp_path_factory, chunks):
+    # Built the way scripts/ingest.py builds the real one: written by a clean process.
+    path = tmp_path_factory.mktemp("library") / "index"
+    build_in_clean_process([c for doc in chunks.values() for c in doc], path)
+    return path
+
+
+@pytest.fixture(scope="module")
+def library(library_path):
+    return SearchLibrary(library_path)
 
 
 def test_keyword_search_values_rare_exact_words():
@@ -173,17 +179,35 @@ def test_library_holds_every_chunk_once(library, chunks):
     assert library.count() == total
 
 
-def test_library_files_contain_no_private_values(library, tmp_path_factory):
-    raw = b"".join(p.read_bytes() for p in tmp_path_factory.getbasetemp().rglob("*")
-                   if p.is_file() and "index" in str(p))
+def test_library_files_contain_no_private_values(library, library_path):
+    # Every file, including ChromaDB's binary search structure (data_level0.bin): this
+    # process read the raw PDFs, so the library was written by a separate clean one.
+    raw = b"".join(p.read_bytes() for p in library_path.rglob("*") if p.is_file())
     values = {i["value"] for d in KEY["documents"] for i in d["pii"] if len(i["value"]) >= 4}
     assert raw and not [v for v in values if v.encode() in raw]
+
+
+def test_rebuilding_leaves_no_old_library_behind(tmp_path, chunks):
+    path = tmp_path / "index"
+    build_in_clean_process(chunks["leave_policy_2025.pdf"], path)
+    build_in_clean_process(chunks["leave_policy_2025.pdf"], path)
+    assert len([p for p in path.iterdir() if p.is_dir()]) == 1  # one search structure, not one per build
 
 
 def test_search_results_carry_citations(library):
     results = library.search("How long is paid parental leave?", k=3)
     assert len(results) == 3
     assert all(re.fullmatch(r"DOC_\d+", r["doc_id"]) and r["page"] >= 1 for r in results)
+
+
+def test_chunks_naming_the_asked_about_person_come_first(library, vault):
+    # Found by the live accuracy test: Nicole Day's directory row (keyword #1) used to
+    # lose to W-9 instructions that both methods half-liked for "phone number".
+    question = mask_question("What is Nicole Day's phone number?", vault, ROSTER)
+    person = re.search(r"PERSON_\d+", question).group()
+    results = library.search(question, k=5)
+    assert all(person in r["text"] for r in results)
+    assert any(re.search(rf"^{person} Finance Payroll Specialist PHONE_\d+", r["text"], re.M) for r in results)
 
 
 def test_hybrid_search_finds_the_right_page(library, vault):

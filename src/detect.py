@@ -88,6 +88,8 @@ def _rx(pattern: str, flags: int = 0) -> re.Pattern:
 PATTERNS = [
     Pattern("EMAIL", _rx(r"\b[\w.+-]+@[\w-]+(?:\.[\w-]+)+\b")),
     Pattern("SSN", _rx(r"\b\d{3}-\d{2}-\d{4}\b"), check=valid_ssn),
+    # Also written with spaces or dots: "123 45 6789", "123.45.6789" (found by the attack tests).
+    Pattern("SSN", _rx(r"\b\d{3}([ .])\d{2}\1\d{4}\b"), check=valid_ssn),
     Pattern("ITIN", _rx(r"\b9\d{2}-\d{2}-\d{4}\b"), check=valid_itin),
     # Tax forms print one digit per box, so an SSN/ITIN can come out as "9 7 5 9 2 9 2 4 6".
     Pattern("TAX_ID", _rx(r"(?<!\d)(?<!\d )\d(?: \d){8}(?! ?\d)"), check=lambda d: valid_ssn(d) or valid_itin(d)),

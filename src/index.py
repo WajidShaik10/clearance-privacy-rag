@@ -255,7 +255,7 @@ class SearchLibrary:
         return self._chunks.count()
 
     def reset(self) -> None:
-        """Empty the library (used before a full rebuild)."""
+        """Empty the library."""
         self._client.delete_collection("chunks")
         self._chunks = self._client.get_or_create_collection(
             "chunks", embedding_function=_embedder(), metadata={"hnsw:space": "cosine"})
@@ -279,6 +279,11 @@ class SearchLibrary:
 
         Each list gives a chunk 1 / (60 + its rank); a chunk ranked well by both
         methods beats one that only one method liked.
+
+        When the question names records (PERSON_3), chunks that mention them come
+        first: a chunk without PERSON_3 cannot answer a question about PERSON_3.
+        Without this, the directory row that keyword search ranked #1 lost to W-9
+        instructions that both methods half-liked for the words "phone number".
         """
         rankings = {"vector": self.vector_search(question, candidates),
                     "keyword": self.keyword_search(question, candidates)}
@@ -288,13 +293,46 @@ class SearchLibrary:
             for rank, chunk_id in enumerate(ids, start=1):
                 fused[chunk_id] = fused.get(chunk_id, 0.0) + 1 / (RRF_K + rank)
                 ranks.setdefault(chunk_id, {})[method] = rank
-
-        best = sorted(fused, key=fused.get, reverse=True)[:k]
-        if not best:
+        if not fused:
             return []
-        stored = self._chunks.get(ids=best)
+
+        stored = self._chunks.get(ids=list(fused))
         by_id = {i: (doc, meta) for i, doc, meta in zip(stored["ids"], stored["documents"], stored["metadatas"])}
+        named = set(PLACEHOLDER.findall(question))
+
+        def order(chunk_id: str) -> tuple:
+            mentions = sum(p in set(PLACEHOLDER.findall(by_id[chunk_id][0])) for p in named)
+            return (mentions, fused[chunk_id])
+
+        best = sorted(fused, key=order, reverse=True)[:k]
         return [{"chunk_id": i, "doc_id": by_id[i][1]["doc_id"], "page": by_id[i][1]["page"],
                  "text": by_id[i][0], "score": round(fused[i], 4),
                  "vector_rank": ranks[i].get("vector"), "keyword_rank": ranks[i].get("keyword")}
                 for i in best]
+
+
+# ---------------------------------------------------------------- writing from a clean process
+
+def _write_chunks(chunks: list[dict], path: str) -> None:
+    SearchLibrary(path).add(chunks)
+
+
+def build_in_clean_process(chunks: list[dict], path: str | Path = INDEX_PATH) -> None:
+    """Write a fresh library from masked chunks, in a separate process that never held real data.
+
+    Found by the attack tests: a library file (ChromaDB's data_level0.bin) built inside
+    a test run held 126 real values from documents never added to it. The file was
+    written with leftover memory from the same program, which had read raw PDFs.
+    So the program that reads raw PDFs never writes the library: a fresh process,
+    given only masked chunks, does. The old folder is removed first, so no earlier
+    build is left behind.
+    """
+    import multiprocessing
+    import shutil
+
+    shutil.rmtree(path, ignore_errors=True)
+    worker = multiprocessing.get_context("spawn").Process(target=_write_chunks, args=(chunks, str(path)))
+    worker.start()
+    worker.join()
+    if worker.exitcode != 0:
+        raise RuntimeError(f"Building the search library failed (exit code {worker.exitcode})")

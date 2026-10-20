@@ -19,6 +19,16 @@ PLACEHOLDER = re.compile(r"\b[A-Z][A-Z_]*_\d+\b")
 TITLE_PREFIX = re.compile(rf"^{TITLES} ")
 
 
+def defang(text: str) -> str:
+    """Turn placeholder-shaped text written by a person ("SSN_1") into plain text ("SSN-1").
+
+    Only the vault may create placeholders. Otherwise a document could contain the
+    words "SSN_1" and HR's answer would show someone else's real SSN in its place.
+    Same length, so every position in the text stays the same.
+    """
+    return PLACEHOLDER.sub(lambda m: m.group().replace("_", "-"), text)
+
+
 # ---------------------------------------------------------------- one person, one placeholder
 
 def full_names_in(findings: Iterable[Finding], known_names: Iterable[str]) -> set[str]:
@@ -74,16 +84,18 @@ def mask_document(extracted: dict, vault: Vault, known_names: Iterable[str] = ()
     data we do not keep cannot leak. Comments are kept, masked like page text.
     """
     known_names = list(known_names)
-    page_findings = find_pii_in_document([p["text"] for p in extracted["pages"]], known_names)
+    texts = [defang(p["text"]) for p in extracted["pages"]]
+    page_findings = find_pii_in_document(texts, known_names)
     full_names = full_names_in((f for page in page_findings for f in page), known_names)
 
     pages = []
-    for page, findings in zip(extracted["pages"], page_findings):
+    for page, text, findings in zip(extracted["pages"], texts, page_findings):
         placeholders = [placeholder_for(f, vault, full_names) for f in findings]
-        pages.append({**page, "text": replace_findings(page["text"], findings, placeholders)})
+        pages.append({**page, "text": replace_findings(text, findings, placeholders)})
 
     comments = extracted["hidden"].get("comments")
     if comments:
+        comments = defang(comments)
         findings = find_pii(comments, full_names)
         comments = replace_findings(comments, findings, [placeholder_for(f, vault, full_names) for f in findings])
 
@@ -103,6 +115,7 @@ def mask_question(question: str, vault: Vault, known_names: Iterable[str] = ()) 
     "What is Rebecca's salary?" -> "What is PERSON_5's salary?"
     """
     known_names = list(known_names)
+    question = defang(question)  # a typed "PERSON_5" is not a real placeholder
     findings = find_pii(question, known_names)
     full_names = full_names_in(findings, known_names)
     placeholders = [placeholder_for(f, vault, full_names, create=False) for f in findings]

@@ -32,7 +32,19 @@ python scripts/evaluate_detection.py      # PII detection score vs the answer ke
 python scripts/evaluate_unseen.py test    # PII detection score on unseen documents (Gretel)
 python scripts/ingest.py                  # read -> mask -> chunk -> embed -> store (data/vault, data/index)
 python scripts/evaluate_search.py         # does search find the right page? (vector vs keyword vs hybrid)
+python scripts/evaluate_answers.py        # live: are HR's answers right? does the AI obey a hostile document?
 ```
+
+## Attack tests
+
+`tests/test_attacks.py` attacks the system with stand-ins for OpenAI that misbehave on purpose (dumping every passage, obeying an instruction hidden in a document, inventing SSNs). `scripts/evaluate_answers.py` runs the live checks: 12/12 HR answers hold the correct value, and the real model ignored the hidden instruction.
+
+What the attacks found and fixed:
+- Typing a placeholder (`What is PERSON_5's salary?`) got past the employee rules: now refused.
+- Placeholder-shaped text in a document (`SSN_1`) would have been treated as real: now defanged to `SSN-1`.
+- An SSN written with spaces (`123 45 6789`) slipped past the final check: now caught.
+- Search dropped the right chunk when only keyword search found it: chunks naming the asked-about person now come first.
+- A search-library file written in the same process that read raw PDFs held real values from leftover memory: the library is now written by a separate process that only receives masked chunks.
 
 ## Ask a question
 

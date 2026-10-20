@@ -39,6 +39,12 @@ OTHER_PEOPLE = re.compile(
     r"|\b[A-Z][a-z]+['’]s\b")
 
 
+# PERSON_5, or PERSON-5 / person 5. Only our own types, so "Form W-4" or "COVID-19" are not caught.
+PLACEHOLDER_TYPES = ("PERSON", "SSN", "ITIN", "EIN", "PHONE", "EMAIL", "EMPLOYEE_ID", "DOB",
+                     "BANK_ROUTING", "BANK_ACCOUNT", "ADDRESS", "MONEY", "DOC")
+PLACEHOLDER_SHAPE = re.compile(r"\b(?:" + "|".join(PLACEHOLDER_TYPES) + r")[_ -]\d+\b", re.I)
+
+
 @dataclass(frozen=True)
 class Decision:
     allowed: bool
@@ -52,6 +58,9 @@ def can_ask(role: str, question: str, known_names: Iterable[str] = ()) -> Decisi
     if role == HR:
         return Decision(True, "HR may ask about any employee.")
 
+    # Typing a placeholder ("What is PERSON_5's salary?") is asking about one person's record.
+    if PLACEHOLDER_SHAPE.search(question):
+        return Decision(False, "Questions about a specific record (placeholder) are limited to HR.")
     personal = [f for f in find_pii(question, known_names) if f.type != "MONEY"]
     if personal:
         kinds = ", ".join(sorted({f.type.lower().replace("_", " ") for f in personal}))
