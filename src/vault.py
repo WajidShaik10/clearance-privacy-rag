@@ -45,7 +45,8 @@ class Vault:
         self._fernet = Fernet(encryption_key)
         self._index_key = index_key
         Path(path).parent.mkdir(parents=True, exist_ok=True)
-        self._db = sqlite3.connect(path)
+        # The web app answers on several threads; it lets only one use the vault at a time.
+        self._db = sqlite3.connect(path, check_same_thread=False)
         self._db.executescript("""
             CREATE TABLE IF NOT EXISTS entries (
                 placeholder TEXT PRIMARY KEY,   -- PERSON_1

@@ -72,23 +72,23 @@ def test_placeholders_survive_closing_and_reopening(tmp_path, keys):
 
 def test_hr_can_reveal_and_it_is_logged(vault):
     vault.get_placeholder("Danielle Johnson", "PERSON")
-    assert vault.reveal("PERSON_1", user="priya", role="hr", purpose="payroll check") == "Danielle Johnson"
+    assert vault.reveal("PERSON_1", user="charlotte", role="hr", purpose="payroll check") == "Danielle Johnson"
     entry = vault.audit_log()[-1]
     assert (entry["user"], entry["placeholder"], entry["allowed"], entry["purpose"]) == (
-        "priya", "PERSON_1", 1, "payroll check")
+        "charlotte", "PERSON_1", 1, "payroll check")
 
 
 def test_non_hr_is_refused_and_the_attempt_is_logged(vault):
     vault.get_placeholder("Danielle Johnson", "PERSON")
     with pytest.raises(PermissionError):
-        vault.reveal("PERSON_1", user="ravi", role="employee")
+        vault.reveal("PERSON_1", user="oliver", role="employee")
     entry = vault.audit_log()[-1]
-    assert (entry["user"], entry["allowed"]) == ("ravi", 0)
+    assert (entry["user"], entry["allowed"]) == ("oliver", 0)
 
 
 def test_unknown_placeholder(vault):
     with pytest.raises(KeyError):
-        vault.reveal("PERSON_99", user="priya", role="hr")
+        vault.reveal("PERSON_99", user="charlotte", role="hr")
     assert not vault.placeholder_exists("PERSON_99")
 
 

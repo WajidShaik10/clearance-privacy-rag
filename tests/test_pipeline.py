@@ -71,7 +71,7 @@ def assistant(stores, reply) -> Assistant:
 
 def test_employee_gets_a_policy_answer(stores):
     result = assistant(stores, honest_policy_answer).ask("How many days of paid sick leave do employees get?",
-                                                          user="ravi", role="employee")
+                                                          user="oliver", role="employee")
     assert result["status"] == "answered"
     assert re.fullmatch(r"Employees receive 8 days of paid sick leave per year\. \[DOC_\d+, page 1\]", result["answer"])
 
@@ -79,18 +79,40 @@ def test_employee_gets_a_policy_answer(stores):
 def test_hr_gets_real_values_and_the_reveal_is_logged(stores):
     vault, _ = stores
     result = assistant(stores, honest_salary_answer).ask("What is Rebecca Heath's annual base salary?",
-                                                          user="priya", role="hr")
-    assert result == {"status": "answered", "answer":
-                      f"Rebecca Heath's current annual base salary is {HEATH_SALARY}. "
-                      "[personnel_file_heath.pdf, page 2]"}
-    reveals = [e for e in vault.audit_log() if e["user"] == "priya" and e["allowed"]]
+                                                          user="charlotte", role="hr")
+    assert (result["status"], result["answer"]) == ("answered", f"Rebecca Heath's current annual base salary is "
+                                                     f"{HEATH_SALARY}. [personnel_file_heath.pdf, page 2]")
+    reveals = [e for e in vault.audit_log() if e["user"] == "charlotte" and e["allowed"]]
     assert {e["placeholder"].split("_")[0] for e in reveals} >= {"PERSON", "MONEY", "DOC"}
+
+
+def test_reply_details_for_the_chat_page(stores):
+    # HR: each placeholder segment carries its real value; sources show file names.
+    hr = assistant(stores, honest_salary_answer).ask("What is Rebecca Heath's annual base salary?", "charlotte", "hr")
+    revealed = [s for s in hr["segments"] if "placeholder" in s]
+    assert [s["value"] for s in revealed] == ["Rebecca Heath", HEATH_SALARY]
+    assert hr["sources"] == [{"doc": "personnel_file_heath.pdf", "page": 2}]
+    assert [s["step"] for s in hr["steps"]] == ["permission", "mask", "search", "answer", "safety", "reveal"]
+    assert re.fullmatch(r"What is PERSON_\d+'s annual base salary\?", hr["masked_question"])
+
+    # Employee: the same segments, but no real values anywhere in the reply.
+    emp = assistant(stores, honest_salary_answer).ask("What is the current annual base salary in the personnel file?",
+                                                      "oliver", "employee")
+    assert all(s["value"] is None for s in emp["segments"] if "placeholder" in s)
+    assert re.fullmatch(r"DOC_\d+", emp["sources"][0]["doc"])
+    assert "Rebecca" not in json.dumps(emp) and HEATH_SALARY not in json.dumps(emp)
+
+
+def test_refused_reply_shows_where_it_stopped(stores):
+    result = assistant(stores, honest_salary_answer).ask("What is Rebecca Heath's salary?", "oliver", "employee")
+    assert [(s["step"], s["ok"]) for s in result["steps"]] == [("permission", False)]
+    assert result["masked_question"] is None and result["sources"] == []
 
 
 def test_employee_never_sees_real_values_even_if_asked_cleverly(stores):
     # Gets past the word rules (no name, no "who"), but the answer stays masked.
     result = assistant(stores, honest_salary_answer).ask("What is the current annual base salary in the personnel file?",
-                                                          user="ravi", role="employee")
+                                                          user="oliver", role="employee")
     assert HEATH_SALARY not in result["answer"] and "Rebecca" not in result["answer"]
     assert re.search(r"PERSON_\d+'s current annual base salary is MONEY_\d+", result["answer"])
 
@@ -99,7 +121,7 @@ def test_employee_never_sees_real_values_even_if_asked_cleverly(stores):
 
 def test_personal_question_from_employee_is_refused_before_the_ai_is_called(stores):
     a = assistant(stores, honest_salary_answer)
-    result = a.ask("What is Rebecca Heath's annual base salary?", user="ravi", role="employee")
+    result = a.ask("What is Rebecca Heath's annual base salary?", user="oliver", role="employee")
     assert result["status"] == "refused" and "limited to HR" in result["answer"]
     assert a.llm_client.calls == 0  # nothing was searched or sent anywhere
 
@@ -126,8 +148,8 @@ def test_refused_question_is_logged_without_its_text(stores):
 def test_unsafe_answers_are_blocked(stores, bad_answer, why):
     vault, _ = stores
     reply = lambda passages: {"answer": bad_answer, "answerable": True, "citations": []}  # noqa: E731
-    result = assistant(stores, reply).ask("How many days of paid sick leave do employees get?", "ravi", "employee")
-    assert result == {"status": "blocked", "answer": BLOCKED_MESSAGE}
+    result = assistant(stores, reply).ask("How many days of paid sick leave do employees get?", "oliver", "employee")
+    assert (result["status"], result["answer"]) == ("blocked", BLOCKED_MESSAGE)
     assert why in vault.audit_log()[-1]["purpose"]
 
 
@@ -139,10 +161,10 @@ def test_real_placeholder_the_ai_was_not_shown_is_blocked(stores):
     unseen = next(f"MONEY_{n}" for n in range(1, 500)
                   if vault.placeholder_exists(f"MONEY_{n}") and f"MONEY_{n}" not in shown)
     reply = lambda passages: {"answer": f"Sick pay is {unseen}.", "answerable": True, "citations": []}  # noqa: E731
-    result = assistant(stores, reply).ask(question, "ravi", "employee")
+    result = assistant(stores, reply).ask(question, "oliver", "employee")
     assert result["status"] == "blocked"
 
 
 def test_blocked_answers_are_never_unmasked_for_hr(stores):
     reply = lambda passages: {"answer": "PERSON_999 earns MONEY_1.", "answerable": True, "citations": []}  # noqa: E731
-    assert assistant(stores, reply).ask("What is Rebecca Heath's salary?", "priya", "hr")["status"] == "blocked"
+    assert assistant(stores, reply).ask("What is Rebecca Heath's salary?", "charlotte", "hr")["status"] == "blocked"

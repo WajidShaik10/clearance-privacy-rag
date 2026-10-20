@@ -46,18 +46,28 @@ What the attacks found and fixed:
 - Search dropped the right chunk when only keyword search found it: chunks naming the asked-about person now come first.
 - A search-library file written in the same process that read raw PDFs held real values from leftover memory: the library is now written by a separate process that only receives masked chunks.
 
-## Ask a question
+## Chat in the browser
+
+```bash
+python -m app        # then open http://127.0.0.1:8000
+```
+
+A custom chat page served by FastAPI, with light and dark themes. Placeholders appear as hatched "sealed" tags; for HR, real values appear "unsealed" and each reveal is logged. Every answer shows its sources, the safety steps it passed, and the masked question the AI actually saw. HR also gets an Audit log tab. Switching person clears the conversation, so HR's unsealed answers never stay on screen.
+
+Runs on this computer only (127.0.0.1). Sign-in is a demo (pick Oliver, an employee, or Charlotte, from HR); the browser sends only who it is and the role is looked up on the server. A real deployment would use the company's login.
+
+## Ask from the terminal
 
 Needs `OPENAI_API_KEY` in `.env` (see `.env.example`) and a built library (`python scripts/ingest.py`).
 
 ```bash
-python -m src.pipeline "How many days of paid sick leave do employees get?" --user ravi --role employee
+python -m src.pipeline "How many days of paid sick leave do employees get?" --user oliver --role employee
 # [answered] Employees receive 8 days of paid sick leave per year. [DOC_2, page 1]
 
-python -m src.pipeline "What is Rebecca Heath's annual base salary?" --user ravi --role employee
+python -m src.pipeline "What is Rebecca Heath's annual base salary?" --user oliver --role employee
 # [refused] Questions about a specific person (person) are limited to HR.
 
-python -m src.pipeline "What is Rebecca Heath's annual base salary?" --user priya --role hr
+python -m src.pipeline "What is Rebecca Heath's annual base salary?" --user charlotte --role hr
 # [answered] Rebecca Heath's annual base salary is $111,500.00, effective 03/01/2025. [personnel_file_heath.pdf, page 2]
 ```
 

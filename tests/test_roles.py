@@ -55,7 +55,7 @@ def test_unknown_roles_are_denied(role):
 
 def test_refusal_says_why():
     reason = can_ask(EMPLOYEE, "Which bank account does employee EMP-1040 use?", ROSTER).reason
-    assert "employee id" in reason
+    assert "an employee ID" in reason
 
 
 def test_only_hr_sees_real_values():

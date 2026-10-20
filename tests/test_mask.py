@@ -125,14 +125,14 @@ def test_hr_gets_real_values_back(vault, masked):
     doc = masked["payslip_september_2025_johnson.pdf"]
     line = next(l for l in doc["pages"][0]["text"].splitlines() if l.startswith("Employee "))
     answer = f"{line} [{doc['doc_id']}, page 1]"
-    assert unmask(answer, vault, user="priya", role="hr") == (
+    assert unmask(answer, vault, user="charlotte", role="hr") == (
         "Employee Danielle Johnson Employee ID EMP-1040 [payslip_september_2025_johnson.pdf, page 1]")
 
 
 def test_non_hr_cannot_unmask(vault, masked):
     with pytest.raises(PermissionError):
-        unmask("Employee PERSON_1", vault, user="ravi", role="employee")
+        unmask("Employee PERSON_1", vault, user="oliver", role="employee")
 
 
 def test_made_up_placeholder_is_left_alone(vault, masked):
-    assert unmask("PERSON_999 also works there", vault, user="priya", role="hr") == "PERSON_999 also works there"
+    assert unmask("PERSON_999 also works there", vault, user="charlotte", role="hr") == "PERSON_999 also works there"

@@ -124,7 +124,7 @@ def test_injected_instruction_reaches_the_ai_only_as_masked_text(stores):
 def test_answer_from_an_ai_that_obeys_the_injection_is_blocked(stores):
     for role in ("employee", "hr"):
         result, _ = ask(stores, obey_the_injection, "How fast are travel expenses reimbursed?", role)
-        assert result == {"status": "blocked", "answer": BLOCKED_MESSAGE}
+        assert (result["status"], result["answer"]) == ("blocked", BLOCKED_MESSAGE)
 
 
 # ---------------------------------------------------------------- D: placeholders typed into a document

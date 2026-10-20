@@ -131,8 +131,11 @@ def unmask(text: str, vault: Vault, user: str, role: str, purpose: str = "") -> 
     A placeholder the vault does not know (one the AI made up) is left as it is;
     the output guard deals with those.
     """
-    real = {}
-    for placeholder in dict.fromkeys(PLACEHOLDER.findall(text)):  # each placeholder once
-        if vault.placeholder_exists(placeholder):
-            real[placeholder] = vault.reveal(placeholder, user, role, purpose)
+    real = reveal_all(PLACEHOLDER.findall(text), vault, user, role, purpose)
     return PLACEHOLDER.sub(lambda m: real.get(m.group(), m.group()), text)
+
+
+def reveal_all(placeholders: Iterable[str], vault: Vault, user: str, role: str, purpose: str = "") -> dict[str, str]:
+    """{placeholder: real value} for each known placeholder, revealed (and logged) once each."""
+    return {p: vault.reveal(p, user, role, purpose)
+            for p in dict.fromkeys(placeholders) if vault.placeholder_exists(p)}

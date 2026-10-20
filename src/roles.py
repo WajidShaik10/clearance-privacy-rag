@@ -45,6 +45,12 @@ PLACEHOLDER_TYPES = ("PERSON", "SSN", "ITIN", "EIN", "PHONE", "EMAIL", "EMPLOYEE
 PLACEHOLDER_SHAPE = re.compile(r"\b(?:" + "|".join(PLACEHOLDER_TYPES) + r")[_ -]\d+\b", re.I)
 
 
+FRIENDLY = {"PERSON": "a name", "SSN": "an SSN", "ITIN": "a tax ID", "EIN": "a tax ID",
+            "EMPLOYEE_ID": "an employee ID", "PHONE": "a phone number", "EMAIL": "an email address",
+            "ADDRESS": "an address", "DOB": "a date of birth", "BANK_ACCOUNT": "a bank account number",
+            "BANK_ROUTING": "a bank routing number"}
+
+
 @dataclass(frozen=True)
 class Decision:
     allowed: bool
@@ -60,11 +66,11 @@ def can_ask(role: str, question: str, known_names: Iterable[str] = ()) -> Decisi
 
     # Typing a placeholder ("What is PERSON_5's salary?") is asking about one person's record.
     if PLACEHOLDER_SHAPE.search(question):
-        return Decision(False, "Questions about a specific record (placeholder) are limited to HR.")
+        return Decision(False, "Your question points to a specific record. Questions about a specific person are limited to HR.")
     personal = [f for f in find_pii(question, known_names) if f.type != "MONEY"]
     if personal:
-        kinds = ", ".join(sorted({f.type.lower().replace("_", " ") for f in personal}))
-        return Decision(False, f"Questions about a specific person ({kinds}) are limited to HR.")
+        kinds = " and ".join(sorted({FRIENDLY.get(f.type, f.type.lower().replace("_", " ")) for f in personal}))
+        return Decision(False, f"Your question includes {kinds}. Questions about a specific person are limited to HR.")
     if SENSITIVE_TOPIC.search(question) and OTHER_PEOPLE.search(question):
         return Decision(False, "Questions about other people's pay or personal details are limited to HR.")
     return Decision(True, "General question about policies or rules.")

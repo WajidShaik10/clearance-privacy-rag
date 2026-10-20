@@ -24,7 +24,6 @@ chromadb
 openai
 python-dotenv
 
-# Milestone 9: chat screen
+# Milestone 9: chat page (FastAPI serves a custom HTML/CSS/JS page)
 fastapi
 uvicorn
-streamlit
