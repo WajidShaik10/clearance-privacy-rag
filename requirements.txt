@@ -20,7 +20,8 @@ cryptography
 # Milestone 5: search library
 chromadb
 
-# Milestone 6: AI model (add anthropic and/or ollama once chosen)
+# Milestone 6: AI model (OpenAI; key in .env as OPENAI_API_KEY)
+openai
 python-dotenv
 
 # Milestone 9: chat screen
