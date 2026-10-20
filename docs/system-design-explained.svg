@@ -1,0 +1,208 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" width="1300" height="1100" viewBox="0 0 1300 1100" font-family="system-ui, -apple-system, 'Segoe UI', Helvetica, Arial, sans-serif">
+<defs><marker id="a-plain" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" fill="#5b6675"/></marker><marker id="a-sec" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" fill="#0e7666"/></marker><marker id="a-bad" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" fill="#b42318"/></marker></defs>
+<rect width="1300" height="1100" fill="#ffffff"/>
+<text x="20" y="40" font-size="24" font-weight="700" fill="#1b2430">Privacy-Safe RAG: how it works</text>
+<text x="20" y="64" font-size="14" fill="#5b6675">Follow one example: a payroll PDF that says “John Smith, SSN 123-45-6789, earns $85,000” on page 4.</text>
+<rect x="20" y="84" width="1260" height="200" rx="12" fill="#f8fafc" stroke="#c3cad4" stroke-width="1"/>
+<text x="40" y="110" font-size="13" font-weight="700" letter-spacing="1" fill="#1b2430">PHASE 1 · PREPARE DOCUMENTS</text>
+<text x="40" y="110" dx="262.4" font-size="12.5" fill="#5b6675">runs once, when a document is added</text>
+<rect x="20" y="296" width="1260" height="186" rx="12" fill="#f8fafc" stroke="#c3cad4" stroke-width="1"/>
+<text x="40" y="322" font-size="13" font-weight="700" letter-spacing="1" fill="#1b2430">STORAGE</text>
+<text x="40" y="322" dx="78.39999999999999" font-size="12.5" fill="#5b6675">two separate places, never mixed</text>
+<rect x="20" y="494" width="1260" height="560" rx="12" fill="#f8fafc" stroke="#c3cad4" stroke-width="1"/>
+<text x="40" y="520" font-size="13" font-weight="700" letter-spacing="1" fill="#1b2430">PHASE 2 · ANSWER A QUESTION</text>
+<text x="40" y="520" dx="262.4" font-size="12.5" fill="#5b6675">runs every time someone asks</text>
+<rect x="40" y="130" width="210" height="100" rx="8" fill="#f5f7f9" stroke="#c3cad4" stroke-width="1.4"/>
+<circle cx="64" cy="156" r="13" fill="#1b2430"/>
+<text x="64" y="161" text-anchor="middle" font-size="13" font-weight="700" fill="#ffffff">1</text>
+<text x="86" y="161" font-size="15" font-weight="700" fill="#1b2430">Upload PDFs</text>
+<text x="56" y="190" font-size="12.5" fill="#5b6675">HR, payroll and tax files</text>
+<text x="56" y="208" font-size="12.5" fill="#5b6675">come into the system</text>
+<rect x="40" y="238" width="210" height="26" rx="13" fill="#eef1f5"/>
+<text x="145.0" y="255" text-anchor="middle" font-family="ui-monospace, Menlo, Consolas, monospace" font-size="11" fill="#1b2430">payroll.pdf · 12 pages</text>
+<rect x="290" y="130" width="210" height="100" rx="8" fill="#f5f7f9" stroke="#c3cad4" stroke-width="1.4"/>
+<circle cx="314" cy="156" r="13" fill="#1b2430"/>
+<text x="314" y="161" text-anchor="middle" font-size="13" font-weight="700" fill="#ffffff">2</text>
+<text x="336" y="161" font-size="15" font-weight="700" fill="#1b2430">Read the text</text>
+<text x="306" y="190" font-size="12.5" fill="#5b6675">Pull text from each page,</text>
+<text x="306" y="208" font-size="12.5" fill="#5b6675">remember the page number</text>
+<rect x="290" y="238" width="210" height="26" rx="13" fill="#eef1f5"/>
+<text x="395.0" y="255" text-anchor="middle" font-family="ui-monospace, Menlo, Consolas, monospace" font-size="11" fill="#1b2430">p.4: John Smith, SSN …</text>
+<rect x="540" y="130" width="210" height="100" rx="8" fill="#f5f7f9" stroke="#c3cad4" stroke-width="1.4"/>
+<circle cx="564" cy="156" r="13" fill="#1b2430"/>
+<text x="564" y="161" text-anchor="middle" font-size="13" font-weight="700" fill="#ffffff">3</text>
+<text x="586" y="161" font-size="15" font-weight="700" fill="#1b2430">Find private info</text>
+<text x="556" y="190" font-size="12.5" fill="#5b6675">Rules + AI spot names, SSNs,</text>
+<text x="556" y="208" font-size="12.5" fill="#5b6675">salaries, bank details</text>
+<rect x="540" y="238" width="210" height="26" rx="13" fill="#eef1f5"/>
+<text x="645.0" y="255" text-anchor="middle" font-family="ui-monospace, Menlo, Consolas, monospace" font-size="11" fill="#1b2430">name · SSN · salary found</text>
+<rect x="790" y="130" width="210" height="100" rx="8" fill="#f5f7f9" stroke="#c3cad4" stroke-width="1.4"/>
+<circle cx="814" cy="156" r="13" fill="#1b2430"/>
+<text x="814" y="161" text-anchor="middle" font-size="13" font-weight="700" fill="#ffffff">4</text>
+<text x="836" y="161" font-size="15" font-weight="700" fill="#1b2430">Swap in labels</text>
+<text x="806" y="190" font-size="12.5" fill="#5b6675">Each private value gets a</text>
+<text x="806" y="208" font-size="12.5" fill="#5b6675">safe stand-in placeholder</text>
+<rect x="790" y="238" width="210" height="26" rx="13" fill="#eef1f5"/>
+<text x="895.0" y="255" text-anchor="middle" font-family="ui-monospace, Menlo, Consolas, monospace" font-size="11" fill="#1b2430">John Smith → PERSON_1</text>
+<rect x="1040" y="130" width="210" height="100" rx="8" fill="#f5f7f9" stroke="#c3cad4" stroke-width="1.4"/>
+<circle cx="1064" cy="156" r="13" fill="#1b2430"/>
+<text x="1064" y="161" text-anchor="middle" font-size="13" font-weight="700" fill="#ffffff">5</text>
+<text x="1086" y="161" font-size="15" font-weight="700" fill="#1b2430">Split + index</text>
+<text x="1056" y="190" font-size="12.5" fill="#5b6675">Cut text into small passages</text>
+<text x="1056" y="208" font-size="12.5" fill="#5b6675">that can be searched</text>
+<rect x="1040" y="238" width="210" height="26" rx="13" fill="#eef1f5"/>
+<text x="1145.0" y="255" text-anchor="middle" font-family="ui-monospace, Menlo, Consolas, monospace" font-size="11" fill="#1b2430">passage 17 · page 4</text>
+<path d="M250,180 H287" fill="none" stroke="#5b6675" stroke-width="1.6" marker-end="url(#a-plain)"/>
+<path d="M500,180 H537" fill="none" stroke="#5b6675" stroke-width="1.6" marker-end="url(#a-plain)"/>
+<path d="M750,180 H787" fill="none" stroke="#5b6675" stroke-width="1.6" marker-end="url(#a-plain)"/>
+<path d="M1000,180 H1037" fill="none" stroke="#5b6675" stroke-width="1.6" marker-end="url(#a-plain)"/>
+<path d="M540,340 a105.0,10 0 0 0 210,0 a105.0,10 0 0 0 -210,0 v80 a105.0,10 0 0 0 210,0 v-80" fill="#e2f2ee" stroke="#0e7666" stroke-width="1.4"/>
+<circle cx="564" cy="370" r="13" fill="#0e7666"/>
+<text x="564" y="375" text-anchor="middle" font-size="13" font-weight="700" fill="#ffffff">🔒</text>
+<text x="586" y="375" font-size="15" font-weight="700" fill="#1b2430">Locked safe</text>
+<text x="556" y="404" font-size="12.5" fill="#5b6675">Real values, encrypted.</text>
+<text x="556" y="422" font-size="12.5" fill="#5b6675">Only HR can open it.</text>
+<rect x="540" y="438" width="210" height="26" rx="13" fill="#e2f2ee"/>
+<text x="645.0" y="455" text-anchor="middle" font-family="ui-monospace, Menlo, Consolas, monospace" font-size="11" fill="#0e7666">PERSON_1 = John Smith</text>
+<path d="M790,340 a105.0,10 0 0 0 210,0 a105.0,10 0 0 0 -210,0 v80 a105.0,10 0 0 0 210,0 v-80" fill="#f5f7f9" stroke="#c3cad4" stroke-width="1.4"/>
+<circle cx="814" cy="370" r="13" fill="#1b2430"/>
+<text x="814" y="375" text-anchor="middle" font-size="13" font-weight="700" fill="#ffffff">📚</text>
+<text x="836" y="375" font-size="15" font-weight="700" fill="#1b2430">Search library</text>
+<text x="806" y="404" font-size="12.5" fill="#5b6675">Masked passages only.</text>
+<text x="806" y="422" font-size="12.5" fill="#5b6675">No real data inside.</text>
+<rect x="790" y="438" width="210" height="26" rx="13" fill="#eef1f5"/>
+<text x="895.0" y="455" text-anchor="middle" font-family="ui-monospace, Menlo, Consolas, monospace" font-size="11" fill="#1b2430">PERSON_1 earns SALARY_1</text>
+<path d="M880,264 L660,327" fill="none" stroke="#0e7666" stroke-width="1.6" marker-end="url(#a-sec)"/>
+<text x="732" y="296" text-anchor="end" font-size="12" font-weight="600" fill="#0e7666">real values go here</text>
+<path d="M1130,264 L910,327" fill="none" stroke="#5b6675" stroke-width="1.6" marker-end="url(#a-plain)"/>
+<text x="996" y="296" text-anchor="end" font-size="12" font-weight="600" fill="#5b6675">masked text goes here</text>
+<rect x="40" y="540" width="210" height="100" rx="8" fill="#f5f7f9" stroke="#c3cad4" stroke-width="1.4"/>
+<circle cx="64" cy="566" r="13" fill="#1b2430"/>
+<text x="64" y="571" text-anchor="middle" font-size="13" font-weight="700" fill="#ffffff">6</text>
+<text x="86" y="571" font-size="15" font-weight="700" fill="#1b2430">Someone asks</text>
+<text x="56" y="600" font-size="12.5" fill="#5b6675">An employee types a</text>
+<text x="56" y="618" font-size="12.5" fill="#5b6675">question in plain English</text>
+<rect x="40" y="648" width="210" height="26" rx="13" fill="#eef1f5"/>
+<text x="145.0" y="665" text-anchor="middle" font-family="ui-monospace, Menlo, Consolas, monospace" font-size="11" fill="#1b2430">What is John Smith&#x27;s pay?</text>
+<rect x="290" y="540" width="210" height="100" rx="8" fill="#f5f7f9" stroke="#c3cad4" stroke-width="1.4"/>
+<circle cx="314" cy="566" r="13" fill="#1b2430"/>
+<text x="314" y="571" text-anchor="middle" font-size="13" font-weight="700" fill="#ffffff">7</text>
+<text x="336" y="571" font-size="15" font-weight="700" fill="#1b2430">Who are you?</text>
+<text x="306" y="600" font-size="12.5" fill="#5b6675">Check login and role.</text>
+<text x="306" y="618" font-size="12.5" fill="#5b6675">Refuse risky asks early.</text>
+<rect x="290" y="648" width="210" height="26" rx="13" fill="#eef1f5"/>
+<text x="395.0" y="665" text-anchor="middle" font-family="ui-monospace, Menlo, Consolas, monospace" font-size="11" fill="#1b2430">role: Employee or HR</text>
+<rect x="540" y="540" width="210" height="100" rx="8" fill="#f5f7f9" stroke="#c3cad4" stroke-width="1.4"/>
+<circle cx="564" cy="566" r="13" fill="#1b2430"/>
+<text x="564" y="571" text-anchor="middle" font-size="13" font-weight="700" fill="#ffffff">8</text>
+<text x="586" y="571" font-size="15" font-weight="700" fill="#1b2430">Mask the question</text>
+<text x="556" y="600" font-size="12.5" fill="#5b6675">Use the same placeholders</text>
+<text x="556" y="618" font-size="12.5" fill="#5b6675">as the documents</text>
+<rect x="540" y="648" width="210" height="26" rx="13" fill="#eef1f5"/>
+<text x="645.0" y="665" text-anchor="middle" font-family="ui-monospace, Menlo, Consolas, monospace" font-size="11" fill="#1b2430">→ What is PERSON_1&#x27;s pay?</text>
+<rect x="790" y="540" width="210" height="100" rx="8" fill="#f5f7f9" stroke="#c3cad4" stroke-width="1.4"/>
+<circle cx="814" cy="566" r="13" fill="#1b2430"/>
+<text x="814" y="571" text-anchor="middle" font-size="13" font-weight="700" fill="#ffffff">9</text>
+<text x="836" y="571" font-size="15" font-weight="700" fill="#1b2430">Search</text>
+<text x="806" y="600" font-size="12.5" fill="#5b6675">Find the passages that</text>
+<text x="806" y="618" font-size="12.5" fill="#5b6675">best match the question</text>
+<rect x="790" y="648" width="210" height="26" rx="13" fill="#eef1f5"/>
+<text x="895.0" y="665" text-anchor="middle" font-family="ui-monospace, Menlo, Consolas, monospace" font-size="11" fill="#1b2430">found: payroll.pdf, p.4</text>
+<rect x="1040" y="540" width="210" height="100" rx="8" fill="#f5f7f9" stroke="#c3cad4" stroke-width="1.4"/>
+<circle cx="1064" cy="566" r="13" fill="#1b2430"/>
+<text x="1064" y="571" text-anchor="middle" font-size="13" font-weight="700" fill="#ffffff">10</text>
+<text x="1086" y="571" font-size="15" font-weight="700" fill="#1b2430">AI writes answer</text>
+<text x="1056" y="600" font-size="12.5" fill="#5b6675">Sees placeholders only,</text>
+<text x="1056" y="618" font-size="12.5" fill="#5b6675">never the real data</text>
+<rect x="1040" y="648" width="210" height="26" rx="13" fill="#eef1f5"/>
+<text x="1145.0" y="665" text-anchor="middle" font-family="ui-monospace, Menlo, Consolas, monospace" font-size="11" fill="#1b2430">PERSON_1 earns SALARY_1 [p.4]</text>
+<path d="M250,590 H287" fill="none" stroke="#5b6675" stroke-width="1.6" marker-end="url(#a-plain)"/>
+<path d="M500,590 H537" fill="none" stroke="#5b6675" stroke-width="1.6" marker-end="url(#a-plain)"/>
+<path d="M750,590 H787" fill="none" stroke="#5b6675" stroke-width="1.6" marker-end="url(#a-plain)"/>
+<path d="M1000,590 H1037" fill="none" stroke="#5b6675" stroke-width="1.6" marker-end="url(#a-plain)"/>
+<path d="M645.0,464 V537" fill="none" stroke="#0e7666" stroke-width="1.6" marker-end="url(#a-sec)"/>
+<text x="653.0" y="512" text-anchor="start" font-size="12" font-weight="600" fill="#0e7666">look up placeholder</text>
+<path d="M895.0,464 V537" fill="none" stroke="#5b6675" stroke-width="1.6" marker-end="url(#a-plain)"/>
+<text x="903.0" y="512" text-anchor="start" font-size="12" font-weight="600" fill="#5b6675">find passages</text>
+<rect x="1030" y="528" width="230" height="154" rx="12" fill="none" stroke="#5b6675" stroke-width="1.3" stroke-dasharray="7 5"/>
+<text x="1260" y="522" text-anchor="end" font-size="11.5" font-style="italic" fill="#5b6675">outside AI service</text>
+<rect x="1040" y="720" width="210" height="100" rx="8" fill="#f5f7f9" stroke="#c3cad4" stroke-width="1.4"/>
+<circle cx="1064" cy="746" r="13" fill="#1b2430"/>
+<text x="1064" y="751" text-anchor="middle" font-size="13" font-weight="700" fill="#ffffff">11</text>
+<text x="1086" y="751" font-size="15" font-weight="700" fill="#1b2430">Final safety check</text>
+<text x="1056" y="780" font-size="12.5" fill="#5b6675">Scan the answer for any</text>
+<text x="1056" y="798" font-size="12.5" fill="#5b6675">real private data</text>
+<rect x="1040" y="828" width="210" height="26" rx="13" fill="#eef1f5"/>
+<text x="1145.0" y="845" text-anchor="middle" font-family="ui-monospace, Menlo, Consolas, monospace" font-size="11" fill="#1b2430">✓ nothing private found</text>
+<rect x="790" y="720" width="210" height="100" rx="8" fill="#f5f7f9" stroke="#c3cad4" stroke-width="1.4"/>
+<circle cx="814" cy="746" r="13" fill="#1b2430"/>
+<text x="814" y="751" text-anchor="middle" font-size="13" font-weight="700" fill="#ffffff">12</text>
+<text x="836" y="751" font-size="15" font-weight="700" fill="#1b2430">Who gets to see?</text>
+<text x="806" y="780" font-size="12.5" fill="#5b6675">HR gets real values.</text>
+<text x="806" y="798" font-size="12.5" fill="#5b6675">Everyone else: labels.</text>
+<rect x="790" y="828" width="210" height="26" rx="13" fill="#eef1f5"/>
+<text x="895.0" y="845" text-anchor="middle" font-family="ui-monospace, Menlo, Consolas, monospace" font-size="11" fill="#1b2430">role = HR ?</text>
+<rect x="540" y="720" width="210" height="100" rx="8" fill="#e2f2ee" stroke="#0e7666" stroke-width="1.4"/>
+<circle cx="564" cy="746" r="13" fill="#0e7666"/>
+<text x="564" y="751" text-anchor="middle" font-size="13" font-weight="700" fill="#ffffff">13</text>
+<text x="586" y="751" font-size="15" font-weight="700" fill="#1b2430">Unlock real values</text>
+<text x="556" y="780" font-size="12.5" fill="#5b6675">Swap placeholders back</text>
+<text x="556" y="798" font-size="12.5" fill="#5b6675">using the locked safe</text>
+<rect x="540" y="828" width="210" height="26" rx="13" fill="#e2f2ee"/>
+<text x="645.0" y="845" text-anchor="middle" font-family="ui-monospace, Menlo, Consolas, monospace" font-size="11" fill="#0e7666">PERSON_1 → John Smith</text>
+<rect x="290" y="720" width="210" height="100" rx="8" fill="#e2f2ee" stroke="#0e7666" stroke-width="1.4"/>
+<circle cx="314" cy="746" r="13" fill="#0e7666"/>
+<text x="314" y="751" text-anchor="middle" font-size="13" font-weight="700" fill="#ffffff">14</text>
+<text x="336" y="751" font-size="15" font-weight="700" fill="#1b2430">HR sees answer</text>
+<text x="306" y="780" font-size="12.5" fill="#5b6675">Real names and numbers,</text>
+<text x="306" y="798" font-size="12.5" fill="#5b6675">with page citations</text>
+<rect x="290" y="828" width="210" height="26" rx="13" fill="#e2f2ee"/>
+<text x="395.0" y="845" text-anchor="middle" font-family="ui-monospace, Menlo, Consolas, monospace" font-size="11" fill="#0e7666">John Smith earns $85,000</text>
+<path d="M1145.0,674 V717" fill="none" stroke="#5b6675" stroke-width="1.6" marker-end="url(#a-plain)"/>
+<path d="M1040,770 H1003" fill="none" stroke="#5b6675" stroke-width="1.6" marker-end="url(#a-plain)"/>
+<text x="1020" y="762" text-anchor="middle" font-size="12" font-weight="600" fill="#5b6675">safe</text>
+<path d="M790,770 H753" fill="none" stroke="#0e7666" stroke-width="1.6" marker-end="url(#a-sec)"/>
+<text x="770" y="762" text-anchor="middle" font-size="12" font-weight="600" fill="#0e7666">HR</text>
+<path d="M540,790 H503" fill="none" stroke="#0e7666" stroke-width="1.6" marker-end="url(#a-sec)"/>
+<path d="M540,390 H518 V750 H537" fill="none" stroke="#0e7666" stroke-width="1.6" stroke-dasharray="6 5" marker-end="url(#a-sec)"/>
+<text x="512" y="690" text-anchor="end" font-size="12" font-weight="600" fill="#0e7666">decrypt</text>
+<rect x="1040" y="900" width="210" height="100" rx="8" fill="#fdecea" stroke="#b42318" stroke-width="1.4"/>
+<circle cx="1064" cy="926" r="13" fill="#b42318"/>
+<text x="1064" y="931" text-anchor="middle" font-size="13" font-weight="700" fill="#ffffff">✕</text>
+<text x="1086" y="931" font-size="15" font-weight="700" fill="#1b2430">Blocked</text>
+<text x="1056" y="960" font-size="12.5" fill="#5b6675">Answer is stopped and</text>
+<text x="1056" y="978" font-size="12.5" fill="#5b6675">the team is alerted</text>
+<rect x="1040" y="1008" width="210" height="26" rx="13" fill="#fdecea"/>
+<text x="1145.0" y="1025" text-anchor="middle" font-family="ui-monospace, Menlo, Consolas, monospace" font-size="11" fill="#b42318">“Sorry, I can&#x27;t share that.”</text>
+<rect x="790" y="900" width="210" height="100" rx="8" fill="#f5f7f9" stroke="#c3cad4" stroke-width="1.4"/>
+<circle cx="814" cy="926" r="13" fill="#1b2430"/>
+<text x="814" y="931" text-anchor="middle" font-size="13" font-weight="700" fill="#ffffff">15</text>
+<text x="836" y="931" font-size="15" font-weight="700" fill="#1b2430">Everyone else sees</text>
+<text x="806" y="960" font-size="12.5" fill="#5b6675">A useful answer with</text>
+<text x="806" y="978" font-size="12.5" fill="#5b6675">nothing private in it</text>
+<rect x="790" y="1008" width="210" height="26" rx="13" fill="#eef1f5"/>
+<text x="895.0" y="1025" text-anchor="middle" font-family="ui-monospace, Menlo, Consolas, monospace" font-size="11" fill="#1b2430">PERSON_1 earns SALARY_1 [p.4]</text>
+<path d="M540,910 a105.0,10 0 0 0 210,0 a105.0,10 0 0 0 -210,0 v80 a105.0,10 0 0 0 210,0 v-80" fill="#e2f2ee" stroke="#0e7666" stroke-width="1.4"/>
+<circle cx="564" cy="940" r="13" fill="#0e7666"/>
+<text x="564" y="945" text-anchor="middle" font-size="13" font-weight="700" fill="#ffffff">16</text>
+<text x="586" y="945" font-size="15" font-weight="700" fill="#1b2430">Audit log</text>
+<text x="556" y="974" font-size="12.5" fill="#5b6675">Records who saw what,</text>
+<text x="556" y="992" font-size="12.5" fill="#5b6675">and when</text>
+<rect x="540" y="1008" width="210" height="26" rx="13" fill="#e2f2ee"/>
+<text x="645.0" y="1025" text-anchor="middle" font-family="ui-monospace, Menlo, Consolas, monospace" font-size="11" fill="#0e7666">hr_user · PERSON_1 · 14:02</text>
+<path d="M1145.0,854 V897" fill="none" stroke="#b42318" stroke-width="1.6" marker-end="url(#a-bad)"/>
+<text x="1153.0" y="884" text-anchor="start" font-size="12" font-weight="600" fill="#b42318">private data found</text>
+<path d="M895.0,854 V897" fill="none" stroke="#5b6675" stroke-width="1.6" marker-end="url(#a-plain)"/>
+<text x="903.0" y="884" text-anchor="start" font-size="12" font-weight="600" fill="#5b6675">not HR</text>
+<path d="M645.0,854 V897" fill="none" stroke="#0e7666" stroke-width="1.6" marker-end="url(#a-sec)"/>
+<text x="653.0" y="884" text-anchor="start" font-size="12" font-weight="600" fill="#0e7666">always logged</text>
+<rect x="20" y="1068" width="26" height="16" rx="4" fill="#e2f2ee" stroke="#0e7666" stroke-width="1.4"/>
+<text x="54" y="1081" font-size="12.5" fill="#1b2430">Touches real private data (locked down)</text>
+<rect x="363" y="1068" width="26" height="16" rx="4" fill="#f5f7f9" stroke="#c3cad4" stroke-width="1.4"/>
+<text x="397" y="1081" font-size="12.5" fill="#1b2430">Only sees placeholders (safe)</text>
+<rect x="636" y="1068" width="26" height="16" rx="4" fill="none" stroke="#5b6675" stroke-width="1.4" stroke-dasharray="5 4"/>
+<text x="670" y="1081" font-size="12.5" fill="#1b2430">Outside AI service</text>
+<rect x="832" y="1068" width="26" height="16" rx="4" fill="#fdecea" stroke="#b42318" stroke-width="1.4"/>
+<text x="866" y="1081" font-size="12.5" fill="#1b2430">Blocked</text>
+</svg>

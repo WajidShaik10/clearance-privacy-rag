@@ -1,0 +1,12 @@
+.venv/
+__pycache__/
+*.pyc
+.pytest_cache/
+.DS_Store
+
+# Secrets and private stores: never commit
+.env
+*.key
+data/vault/
+data/index/
+data/audit/

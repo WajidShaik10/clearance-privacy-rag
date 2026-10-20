@@ -1,0 +1,2353 @@
+{
+  "note": "All data is fake (Faker seed 42). Values are listed per page as they appear in the PDF.",
+  "company": {
+    "name": "Brightline Logistics LLC",
+    "address": "200 W Lakeview Ave, Suite 900",
+    "city": "Chicago, IL 60606",
+    "ein": "36-4817205",
+    "state_id": "IL 4471-0938",
+    "bank": "First Lakeshore Bank"
+  },
+  "people": [
+    {
+      "emp_id": "EMP-1040",
+      "first": "Danielle",
+      "last": "Johnson",
+      "ssn": "282-32-3658",
+      "dob": "05/13/1969",
+      "street": "819 Johnson Course",
+      "city_line": "East William, IL 60608",
+      "phone": "(312) 555-0138",
+      "email": "danielle.johnson@example.com",
+      "routing": "073794026",
+      "account": "654235116155",
+      "salary": 59500,
+      "department": "Operations",
+      "title": "Logistics Coordinator",
+      "hire_date": "08/12/2022",
+      "emergency_name": "Monica Herrera",
+      "emergency_phone": "(312) 555-0161",
+      "name": "Danielle Johnson"
+    },
+    {
+      "emp_id": "EMP-1041",
+      "first": "Andrea",
+      "last": "Calderon",
+      "ssn": "634-47-9460",
+      "dob": "06/23/1971",
+      "street": "34131 Ramirez Roads",
+      "city_line": "Franciscostad, IL 60634",
+      "phone": "(312) 555-0119",
+      "email": "andrea.calderon@example.com",
+      "routing": "112832768",
+      "account": "4835030564",
+      "salary": 72500,
+      "department": "Operations",
+      "title": "Warehouse Supervisor",
+      "hire_date": "02/01/2025",
+      "emergency_name": "Michelle Lewis",
+      "emergency_phone": "(312) 555-0176",
+      "name": "Andrea Calderon"
+    },
+    {
+      "emp_id": "EMP-1042",
+      "first": "Nicole",
+      "last": "Day",
+      "ssn": "147-34-2288",
+      "dob": "08/25/1973",
+      "street": "969 Cox Dam Suite 101",
+      "city_line": "Lake Ernest, IL 60669",
+      "phone": "(312) 555-0116",
+      "email": "nicole.day@example.com",
+      "routing": "079784807",
+      "account": "18451462704",
+      "salary": 67500,
+      "department": "Finance",
+      "title": "Payroll Specialist",
+      "hire_date": "11/17/2023",
+      "emergency_name": "Ashley Garrett",
+      "emergency_phone": "(312) 555-0189",
+      "name": "Nicole Day"
+    },
+    {
+      "emp_id": "EMP-1043",
+      "first": "James",
+      "last": "Brooks",
+      "ssn": "166-70-8690",
+      "dob": "07/10/2000",
+      "street": "0154 Brian Wells Apt. 171",
+      "city_line": "East Donna, IL 60682",
+      "phone": "(312) 555-0148",
+      "email": "james.brooks@example.com",
+      "routing": "106383469",
+      "account": "5787133150",
+      "salary": 86000,
+      "department": "Finance",
+      "title": "Senior Accountant",
+      "hire_date": "08/16/2019",
+      "emergency_name": "Benjamin Welch",
+      "emergency_phone": "(312) 555-0131",
+      "name": "James Brooks"
+    },
+    {
+      "emp_id": "EMP-1044",
+      "first": "Rebecca",
+      "last": "Heath",
+      "ssn": "073-66-3900",
+      "dob": "12/03/1974",
+      "street": "82997 Kristen Valley Suite 311",
+      "city_line": "Gomezchester, IL 60670",
+      "phone": "(312) 555-0110",
+      "email": "rebecca.heath@example.com",
+      "routing": "075133384",
+      "account": "726247317810",
+      "salary": 111500,
+      "department": "Engineering",
+      "title": "Software Engineer",
+      "hire_date": "12/31/2022",
+      "emergency_name": "Alexis Davis",
+      "emergency_phone": "(312) 555-0132",
+      "name": "Rebecca Heath"
+    },
+    {
+      "emp_id": "EMP-1045",
+      "first": "Richard",
+      "last": "Olson",
+      "ssn": "886-52-0961",
+      "dob": "05/15/1970",
+      "street": "4746 Moore Hill",
+      "city_line": "North Beth, IL 60680",
+      "phone": "(312) 555-0150",
+      "email": "richard.olson@example.com",
+      "routing": "019788203",
+      "account": "812191361939",
+      "salary": 95000,
+      "department": "Engineering",
+      "title": "Data Analyst",
+      "hire_date": "07/16/2022",
+      "emergency_name": "Jennifer Silva",
+      "emergency_phone": "(312) 555-0185",
+      "name": "Richard Olson"
+    },
+    {
+      "emp_id": "EMP-1046",
+      "first": "Sarah",
+      "last": "Harris",
+      "ssn": "734-41-3911",
+      "dob": "05/29/1974",
+      "street": "475 Albert Road",
+      "city_line": "North Amandahaven, IL 60642",
+      "phone": "(312) 555-0151",
+      "email": "sarah.harris@example.com",
+      "routing": "045427842",
+      "account": "9808412411",
+      "salary": 69000,
+      "department": "Human Resources",
+      "title": "HR Generalist",
+      "hire_date": "12/17/2019",
+      "emergency_name": "Michelle Harris",
+      "emergency_phone": "(312) 555-0148",
+      "name": "Sarah Harris"
+    },
+    {
+      "emp_id": "EMP-1047",
+      "first": "Tracy",
+      "last": "Whitehead",
+      "ssn": "867-07-1513",
+      "dob": "02/25/1989",
+      "street": "05242 Arnold Meadow Apt. 112",
+      "city_line": "Port Mikeside, IL 60626",
+      "phone": "(312) 555-0120",
+      "email": "tracy.whitehead@example.com",
+      "routing": "055053316",
+      "account": "58692322602",
+      "salary": 71000,
+      "department": "Sales",
+      "title": "Account Executive",
+      "hire_date": "01/16/2024",
+      "emergency_name": "Michael Moss",
+      "emergency_phone": "(312) 555-0134",
+      "name": "Tracy Whitehead"
+    },
+    {
+      "emp_id": "EMP-1048",
+      "first": "Erik",
+      "last": "Haynes",
+      "ssn": "392-05-7712",
+      "dob": "09/05/1972",
+      "street": "4330 Raymond Harbors Apt. 458",
+      "city_line": "Frazierside, IL 60650",
+      "phone": "(312) 555-0114",
+      "email": "erik.haynes@example.com",
+      "routing": "039401968",
+      "account": "5569816934",
+      "salary": 59000,
+      "department": "Operations",
+      "title": "Logistics Coordinator",
+      "hire_date": "10/17/2017",
+      "emergency_name": "Kimberly Ball",
+      "emergency_phone": "(312) 555-0135",
+      "name": "Erik Haynes"
+    },
+    {
+      "emp_id": "EMP-1049",
+      "first": "Ryan",
+      "last": "Rush",
+      "ssn": "339-80-5144",
+      "dob": "04/27/1990",
+      "street": "484 Nguyen Square",
+      "city_line": "Angelaborough, IL 60666",
+      "phone": "(312) 555-0129",
+      "email": "ryan.rush@example.com",
+      "routing": "104680449",
+      "account": "3699577738",
+      "salary": 64500,
+      "department": "Operations",
+      "title": "Warehouse Supervisor",
+      "hire_date": "01/20/2023",
+      "emergency_name": "Matthew Harvey",
+      "emergency_phone": "(312) 555-0113",
+      "name": "Ryan Rush"
+    },
+    {
+      "emp_id": "EMP-1050",
+      "first": "Emily",
+      "last": "Walker",
+      "ssn": "204-19-0401",
+      "dob": "08/19/1965",
+      "street": "176 Jennifer Lights Suite 632",
+      "city_line": "Port Michelleville, IL 60663",
+      "phone": "(312) 555-0128",
+      "email": "emily.walker@example.com",
+      "routing": "080831723",
+      "account": "788957986872",
+      "salary": 73500,
+      "department": "Finance",
+      "title": "Payroll Specialist",
+      "hire_date": "09/24/2023",
+      "emergency_name": "David Wright",
+      "emergency_phone": "(312) 555-0148",
+      "name": "Emily Walker"
+    },
+    {
+      "emp_id": "EMP-1051",
+      "first": "Todd",
+      "last": "Allen",
+      "ssn": "451-10-4682",
+      "dob": "02/28/1973",
+      "street": "8122 Patrick Drives Apt. 166",
+      "city_line": "Amychester, IL 60603",
+      "phone": "(312) 555-0166",
+      "email": "todd.allen@example.com",
+      "routing": "100967056",
+      "account": "4668893734",
+      "salary": 88000,
+      "department": "Finance",
+      "title": "Senior Accountant",
+      "hire_date": "01/05/2018",
+      "emergency_name": "Michael Powell",
+      "emergency_phone": "(312) 555-0127",
+      "name": "Todd Allen"
+    }
+  ],
+  "contractors": [
+    {
+      "name": "Samantha Hooper",
+      "business": "",
+      "itin": "975-92-9246",
+      "ein": null,
+      "street": "62720 Gray Forest",
+      "city_line": "Murphyfurt, IL 60646"
+    },
+    {
+      "name": "Amanda Meadows",
+      "business": "Meadows Freight Consulting LLC",
+      "itin": null,
+      "ein": "41-1374158",
+      "street": "80531 Karen Gateway Apt. 092",
+      "city_line": "East Thomas, IN 46319"
+    }
+  ],
+  "documents": [
+    {
+      "file": "w2_2025_johnson.pdf",
+      "kind": "W-2",
+      "scanned": false,
+      "pages": 1,
+      "pii": [
+        {
+          "page": 1,
+          "type": "PERSON",
+          "value": "Danielle Johnson"
+        },
+        {
+          "page": 1,
+          "type": "SSN",
+          "value": "282-32-3658"
+        },
+        {
+          "page": 1,
+          "type": "ADDRESS",
+          "value": "819 Johnson Course"
+        },
+        {
+          "page": 1,
+          "type": "SALARY",
+          "value": "59500.00"
+        },
+        {
+          "page": 1,
+          "type": "EIN",
+          "value": "36-4817205"
+        }
+      ]
+    },
+    {
+      "file": "w2_2025_calderon.pdf",
+      "kind": "W-2",
+      "scanned": false,
+      "pages": 1,
+      "pii": [
+        {
+          "page": 1,
+          "type": "PERSON",
+          "value": "Andrea Calderon"
+        },
+        {
+          "page": 1,
+          "type": "SSN",
+          "value": "634-47-9460"
+        },
+        {
+          "page": 1,
+          "type": "ADDRESS",
+          "value": "34131 Ramirez Roads"
+        },
+        {
+          "page": 1,
+          "type": "SALARY",
+          "value": "72500.00"
+        },
+        {
+          "page": 1,
+          "type": "EIN",
+          "value": "36-4817205"
+        }
+      ]
+    },
+    {
+      "file": "w2_2025_day.pdf",
+      "kind": "W-2",
+      "scanned": false,
+      "pages": 1,
+      "pii": [
+        {
+          "page": 1,
+          "type": "PERSON",
+          "value": "Nicole Day"
+        },
+        {
+          "page": 1,
+          "type": "SSN",
+          "value": "147-34-2288"
+        },
+        {
+          "page": 1,
+          "type": "ADDRESS",
+          "value": "969 Cox Dam Suite 101"
+        },
+        {
+          "page": 1,
+          "type": "SALARY",
+          "value": "67500.00"
+        },
+        {
+          "page": 1,
+          "type": "EIN",
+          "value": "36-4817205"
+        }
+      ]
+    },
+    {
+      "file": "w2_2025_brooks.pdf",
+      "kind": "W-2",
+      "scanned": false,
+      "pages": 1,
+      "pii": [
+        {
+          "page": 1,
+          "type": "PERSON",
+          "value": "James Brooks"
+        },
+        {
+          "page": 1,
+          "type": "SSN",
+          "value": "166-70-8690"
+        },
+        {
+          "page": 1,
+          "type": "ADDRESS",
+          "value": "0154 Brian Wells Apt. 171"
+        },
+        {
+          "page": 1,
+          "type": "SALARY",
+          "value": "86000.00"
+        },
+        {
+          "page": 1,
+          "type": "EIN",
+          "value": "36-4817205"
+        }
+      ]
+    },
+    {
+      "file": "w2_2025_heath.pdf",
+      "kind": "W-2",
+      "scanned": false,
+      "pages": 1,
+      "pii": [
+        {
+          "page": 1,
+          "type": "PERSON",
+          "value": "Rebecca Heath"
+        },
+        {
+          "page": 1,
+          "type": "SSN",
+          "value": "073-66-3900"
+        },
+        {
+          "page": 1,
+          "type": "ADDRESS",
+          "value": "82997 Kristen Valley Suite 311"
+        },
+        {
+          "page": 1,
+          "type": "SALARY",
+          "value": "111500.00"
+        },
+        {
+          "page": 1,
+          "type": "EIN",
+          "value": "36-4817205"
+        }
+      ]
+    },
+    {
+      "file": "w4_olson.pdf",
+      "kind": "W-4",
+      "scanned": false,
+      "pages": 1,
+      "pii": [
+        {
+          "page": 1,
+          "type": "PERSON",
+          "value": "Richard Olson"
+        },
+        {
+          "page": 1,
+          "type": "SSN",
+          "value": "886-52-0961"
+        },
+        {
+          "page": 1,
+          "type": "ADDRESS",
+          "value": "4746 Moore Hill"
+        },
+        {
+          "page": 1,
+          "type": "EIN",
+          "value": "36-4817205"
+        }
+      ]
+    },
+    {
+      "file": "w4_harris.pdf",
+      "kind": "W-4",
+      "scanned": false,
+      "pages": 1,
+      "pii": [
+        {
+          "page": 1,
+          "type": "PERSON",
+          "value": "Sarah Harris"
+        },
+        {
+          "page": 1,
+          "type": "SSN",
+          "value": "734-41-3911"
+        },
+        {
+          "page": 1,
+          "type": "ADDRESS",
+          "value": "475 Albert Road"
+        },
+        {
+          "page": 1,
+          "type": "EIN",
+          "value": "36-4817205"
+        }
+      ]
+    },
+    {
+      "file": "w4_whitehead.pdf",
+      "kind": "W-4",
+      "scanned": false,
+      "pages": 1,
+      "pii": [
+        {
+          "page": 1,
+          "type": "PERSON",
+          "value": "Tracy Whitehead"
+        },
+        {
+          "page": 1,
+          "type": "SSN",
+          "value": "867-07-1513"
+        },
+        {
+          "page": 1,
+          "type": "ADDRESS",
+          "value": "05242 Arnold Meadow Apt. 112"
+        },
+        {
+          "page": 1,
+          "type": "EIN",
+          "value": "36-4817205"
+        }
+      ]
+    },
+    {
+      "file": "w9_hooper.pdf",
+      "kind": "W-9",
+      "scanned": false,
+      "pages": 1,
+      "pii": [
+        {
+          "page": 1,
+          "type": "PERSON",
+          "value": "Samantha Hooper"
+        },
+        {
+          "page": 1,
+          "type": "ADDRESS",
+          "value": "62720 Gray Forest"
+        },
+        {
+          "page": 1,
+          "type": "ITIN",
+          "value": "975-92-9246"
+        }
+      ]
+    },
+    {
+      "file": "w9_meadows.pdf",
+      "kind": "W-9",
+      "scanned": false,
+      "pages": 1,
+      "pii": [
+        {
+          "page": 1,
+          "type": "PERSON",
+          "value": "Amanda Meadows"
+        },
+        {
+          "page": 1,
+          "type": "ADDRESS",
+          "value": "80531 Karen Gateway Apt. 092"
+        },
+        {
+          "page": 1,
+          "type": "EIN",
+          "value": "41-1374158"
+        }
+      ]
+    },
+    {
+      "file": "payslip_september_2025_johnson.pdf",
+      "kind": "Payslip",
+      "scanned": false,
+      "pages": 1,
+      "pii": [
+        {
+          "page": 1,
+          "type": "PERSON",
+          "value": "Danielle Johnson"
+        },
+        {
+          "page": 1,
+          "type": "SSN",
+          "value": "282-32-3658"
+        },
+        {
+          "page": 1,
+          "type": "ADDRESS",
+          "value": "819 Johnson Course"
+        },
+        {
+          "page": 1,
+          "type": "SALARY",
+          "value": "$59,500.00"
+        },
+        {
+          "page": 1,
+          "type": "EMPLOYEE_ID",
+          "value": "EMP-1040"
+        },
+        {
+          "page": 1,
+          "type": "BANK_ROUTING",
+          "value": "073794026"
+        },
+        {
+          "page": 1,
+          "type": "SALARY",
+          "value": "$4,958.33"
+        },
+        {
+          "page": 1,
+          "type": "SALARY",
+          "value": "$3,181.50"
+        },
+        {
+          "page": 1,
+          "type": "BANK_ACCOUNT",
+          "value": "654235116155"
+        }
+      ]
+    },
+    {
+      "file": "payslip_september_2025_calderon.pdf",
+      "kind": "Payslip",
+      "scanned": false,
+      "pages": 1,
+      "pii": [
+        {
+          "page": 1,
+          "type": "PERSON",
+          "value": "Andrea Calderon"
+        },
+        {
+          "page": 1,
+          "type": "SSN",
+          "value": "634-47-9460"
+        },
+        {
+          "page": 1,
+          "type": "ADDRESS",
+          "value": "34131 Ramirez Roads"
+        },
+        {
+          "page": 1,
+          "type": "SALARY",
+          "value": "$72,500.00"
+        },
+        {
+          "page": 1,
+          "type": "EMPLOYEE_ID",
+          "value": "EMP-1041"
+        },
+        {
+          "page": 1,
+          "type": "BANK_ROUTING",
+          "value": "112832768"
+        },
+        {
+          "page": 1,
+          "type": "SALARY",
+          "value": "$6,041.67"
+        },
+        {
+          "page": 1,
+          "type": "SALARY",
+          "value": "$3,922.50"
+        }
+      ]
+    },
+    {
+      "file": "payslip_september_2025_day.pdf",
+      "kind": "Payslip",
+      "scanned": false,
+      "pages": 1,
+      "pii": [
+        {
+          "page": 1,
+          "type": "PERSON",
+          "value": "Nicole Day"
+        },
+        {
+          "page": 1,
+          "type": "SSN",
+          "value": "147-34-2288"
+        },
+        {
+          "page": 1,
+          "type": "ADDRESS",
+          "value": "969 Cox Dam Suite 101"
+        },
+        {
+          "page": 1,
+          "type": "SALARY",
+          "value": "$67,500.00"
+        },
+        {
+          "page": 1,
+          "type": "EMPLOYEE_ID",
+          "value": "EMP-1042"
+        },
+        {
+          "page": 1,
+          "type": "BANK_ROUTING",
+          "value": "079784807"
+        },
+        {
+          "page": 1,
+          "type": "SALARY",
+          "value": "$5,625.00"
+        },
+        {
+          "page": 1,
+          "type": "SALARY",
+          "value": "$3,637.50"
+        },
+        {
+          "page": 1,
+          "type": "BANK_ACCOUNT",
+          "value": "18451462704"
+        }
+      ]
+    },
+    {
+      "file": "payslip_september_2025_brooks.pdf",
+      "kind": "Payslip",
+      "scanned": false,
+      "pages": 1,
+      "pii": [
+        {
+          "page": 1,
+          "type": "PERSON",
+          "value": "James Brooks"
+        },
+        {
+          "page": 1,
+          "type": "SSN",
+          "value": "166-70-8690"
+        },
+        {
+          "page": 1,
+          "type": "ADDRESS",
+          "value": "0154 Brian Wells Apt. 171"
+        },
+        {
+          "page": 1,
+          "type": "SALARY",
+          "value": "$86,000.00"
+        },
+        {
+          "page": 1,
+          "type": "EMPLOYEE_ID",
+          "value": "EMP-1043"
+        },
+        {
+          "page": 1,
+          "type": "BANK_ROUTING",
+          "value": "106383469"
+        },
+        {
+          "page": 1,
+          "type": "SALARY",
+          "value": "$7,166.67"
+        },
+        {
+          "page": 1,
+          "type": "SALARY",
+          "value": "$4,692.00"
+        }
+      ]
+    },
+    {
+      "file": "payslip_september_2025_heath.pdf",
+      "kind": "Payslip",
+      "scanned": false,
+      "pages": 1,
+      "pii": [
+        {
+          "page": 1,
+          "type": "PERSON",
+          "value": "Rebecca Heath"
+        },
+        {
+          "page": 1,
+          "type": "SSN",
+          "value": "073-66-3900"
+        },
+        {
+          "page": 1,
+          "type": "ADDRESS",
+          "value": "82997 Kristen Valley Suite 311"
+        },
+        {
+          "page": 1,
+          "type": "SALARY",
+          "value": "$111,500.00"
+        },
+        {
+          "page": 1,
+          "type": "EMPLOYEE_ID",
+          "value": "EMP-1044"
+        },
+        {
+          "page": 1,
+          "type": "BANK_ROUTING",
+          "value": "075133384"
+        },
+        {
+          "page": 1,
+          "type": "SALARY",
+          "value": "$9,291.67"
+        },
+        {
+          "page": 1,
+          "type": "SALARY",
+          "value": "$6,145.50"
+        },
+        {
+          "page": 1,
+          "type": "BANK_ACCOUNT",
+          "value": "726247317810"
+        }
+      ]
+    },
+    {
+      "file": "employee_directory.pdf",
+      "kind": "Employee directory",
+      "scanned": false,
+      "pages": 1,
+      "pii": [
+        {
+          "page": 1,
+          "type": "PERSON",
+          "value": "Danielle Johnson"
+        },
+        {
+          "page": 1,
+          "type": "PHONE",
+          "value": "(312) 555-0138"
+        },
+        {
+          "page": 1,
+          "type": "EMAIL",
+          "value": "danielle.johnson@example.com"
+        },
+        {
+          "page": 1,
+          "type": "ADDRESS",
+          "value": "819 Johnson Course"
+        },
+        {
+          "page": 1,
+          "type": "PERSON",
+          "value": "Andrea Calderon"
+        },
+        {
+          "page": 1,
+          "type": "PHONE",
+          "value": "(312) 555-0119"
+        },
+        {
+          "page": 1,
+          "type": "EMAIL",
+          "value": "andrea.calderon@example.com"
+        },
+        {
+          "page": 1,
+          "type": "ADDRESS",
+          "value": "34131 Ramirez Roads"
+        },
+        {
+          "page": 1,
+          "type": "PERSON",
+          "value": "Nicole Day"
+        },
+        {
+          "page": 1,
+          "type": "PHONE",
+          "value": "(312) 555-0116"
+        },
+        {
+          "page": 1,
+          "type": "EMAIL",
+          "value": "nicole.day@example.com"
+        },
+        {
+          "page": 1,
+          "type": "ADDRESS",
+          "value": "969 Cox Dam Suite 101"
+        },
+        {
+          "page": 1,
+          "type": "PERSON",
+          "value": "James Brooks"
+        },
+        {
+          "page": 1,
+          "type": "PHONE",
+          "value": "(312) 555-0148"
+        },
+        {
+          "page": 1,
+          "type": "EMAIL",
+          "value": "james.brooks@example.com"
+        },
+        {
+          "page": 1,
+          "type": "ADDRESS",
+          "value": "0154 Brian Wells Apt. 171"
+        },
+        {
+          "page": 1,
+          "type": "PERSON",
+          "value": "Rebecca Heath"
+        },
+        {
+          "page": 1,
+          "type": "PHONE",
+          "value": "(312) 555-0110"
+        },
+        {
+          "page": 1,
+          "type": "EMAIL",
+          "value": "rebecca.heath@example.com"
+        },
+        {
+          "page": 1,
+          "type": "ADDRESS",
+          "value": "82997 Kristen Valley Suite 311"
+        },
+        {
+          "page": 1,
+          "type": "PERSON",
+          "value": "Richard Olson"
+        },
+        {
+          "page": 1,
+          "type": "PHONE",
+          "value": "(312) 555-0150"
+        },
+        {
+          "page": 1,
+          "type": "EMAIL",
+          "value": "richard.olson@example.com"
+        },
+        {
+          "page": 1,
+          "type": "ADDRESS",
+          "value": "4746 Moore Hill"
+        },
+        {
+          "page": 1,
+          "type": "PERSON",
+          "value": "Sarah Harris"
+        },
+        {
+          "page": 1,
+          "type": "PHONE",
+          "value": "(312) 555-0151"
+        },
+        {
+          "page": 1,
+          "type": "EMAIL",
+          "value": "sarah.harris@example.com"
+        },
+        {
+          "page": 1,
+          "type": "ADDRESS",
+          "value": "475 Albert Road"
+        },
+        {
+          "page": 1,
+          "type": "PERSON",
+          "value": "Tracy Whitehead"
+        },
+        {
+          "page": 1,
+          "type": "PHONE",
+          "value": "(312) 555-0120"
+        },
+        {
+          "page": 1,
+          "type": "EMAIL",
+          "value": "tracy.whitehead@example.com"
+        },
+        {
+          "page": 1,
+          "type": "ADDRESS",
+          "value": "05242 Arnold Meadow Apt. 112"
+        },
+        {
+          "page": 1,
+          "type": "PERSON",
+          "value": "Erik Haynes"
+        },
+        {
+          "page": 1,
+          "type": "PHONE",
+          "value": "(312) 555-0114"
+        },
+        {
+          "page": 1,
+          "type": "EMAIL",
+          "value": "erik.haynes@example.com"
+        },
+        {
+          "page": 1,
+          "type": "ADDRESS",
+          "value": "4330 Raymond Harbors Apt. 458"
+        },
+        {
+          "page": 1,
+          "type": "PERSON",
+          "value": "Ryan Rush"
+        },
+        {
+          "page": 1,
+          "type": "PHONE",
+          "value": "(312) 555-0129"
+        },
+        {
+          "page": 1,
+          "type": "EMAIL",
+          "value": "ryan.rush@example.com"
+        },
+        {
+          "page": 1,
+          "type": "ADDRESS",
+          "value": "484 Nguyen Square"
+        },
+        {
+          "page": 1,
+          "type": "PERSON",
+          "value": "Emily Walker"
+        },
+        {
+          "page": 1,
+          "type": "PHONE",
+          "value": "(312) 555-0128"
+        },
+        {
+          "page": 1,
+          "type": "EMAIL",
+          "value": "emily.walker@example.com"
+        },
+        {
+          "page": 1,
+          "type": "ADDRESS",
+          "value": "176 Jennifer Lights Suite 632"
+        },
+        {
+          "page": 1,
+          "type": "PERSON",
+          "value": "Todd Allen"
+        },
+        {
+          "page": 1,
+          "type": "PHONE",
+          "value": "(312) 555-0166"
+        },
+        {
+          "page": 1,
+          "type": "EMAIL",
+          "value": "todd.allen@example.com"
+        },
+        {
+          "page": 1,
+          "type": "ADDRESS",
+          "value": "8122 Patrick Drives Apt. 166"
+        }
+      ]
+    },
+    {
+      "file": "payroll_register_q3_2025.pdf",
+      "kind": "Payroll register",
+      "scanned": false,
+      "pages": 3,
+      "pii": [
+        {
+          "page": 1,
+          "type": "EMPLOYEE_ID",
+          "value": "EMP-1040"
+        },
+        {
+          "page": 2,
+          "type": "EMPLOYEE_ID",
+          "value": "EMP-1040"
+        },
+        {
+          "page": 3,
+          "type": "EMPLOYEE_ID",
+          "value": "EMP-1040"
+        },
+        {
+          "page": 1,
+          "type": "PERSON",
+          "value": "Danielle Johnson"
+        },
+        {
+          "page": 2,
+          "type": "PERSON",
+          "value": "Danielle Johnson"
+        },
+        {
+          "page": 3,
+          "type": "PERSON",
+          "value": "Danielle Johnson"
+        },
+        {
+          "page": 1,
+          "type": "SSN",
+          "value": "282-32-3658"
+        },
+        {
+          "page": 2,
+          "type": "SSN",
+          "value": "282-32-3658"
+        },
+        {
+          "page": 3,
+          "type": "SSN",
+          "value": "282-32-3658"
+        },
+        {
+          "page": 1,
+          "type": "SALARY",
+          "value": "$4,958.33"
+        },
+        {
+          "page": 2,
+          "type": "SALARY",
+          "value": "$4,958.33"
+        },
+        {
+          "page": 3,
+          "type": "SALARY",
+          "value": "$4,958.33"
+        },
+        {
+          "page": 1,
+          "type": "BANK_ACCOUNT",
+          "value": "654235116155"
+        },
+        {
+          "page": 2,
+          "type": "BANK_ACCOUNT",
+          "value": "654235116155"
+        },
+        {
+          "page": 3,
+          "type": "BANK_ACCOUNT",
+          "value": "654235116155"
+        },
+        {
+          "page": 1,
+          "type": "EMPLOYEE_ID",
+          "value": "EMP-1041"
+        },
+        {
+          "page": 2,
+          "type": "EMPLOYEE_ID",
+          "value": "EMP-1041"
+        },
+        {
+          "page": 3,
+          "type": "EMPLOYEE_ID",
+          "value": "EMP-1041"
+        },
+        {
+          "page": 1,
+          "type": "PERSON",
+          "value": "Andrea Calderon"
+        },
+        {
+          "page": 2,
+          "type": "PERSON",
+          "value": "Andrea Calderon"
+        },
+        {
+          "page": 3,
+          "type": "PERSON",
+          "value": "Andrea Calderon"
+        },
+        {
+          "page": 1,
+          "type": "SSN",
+          "value": "634-47-9460"
+        },
+        {
+          "page": 2,
+          "type": "SSN",
+          "value": "634-47-9460"
+        },
+        {
+          "page": 3,
+          "type": "SSN",
+          "value": "634-47-9460"
+        },
+        {
+          "page": 1,
+          "type": "SALARY",
+          "value": "$6,041.67"
+        },
+        {
+          "page": 2,
+          "type": "SALARY",
+          "value": "$6,041.67"
+        },
+        {
+          "page": 3,
+          "type": "SALARY",
+          "value": "$6,041.67"
+        },
+        {
+          "page": 1,
+          "type": "BANK_ACCOUNT",
+          "value": "4835030564"
+        },
+        {
+          "page": 2,
+          "type": "BANK_ACCOUNT",
+          "value": "4835030564"
+        },
+        {
+          "page": 3,
+          "type": "BANK_ACCOUNT",
+          "value": "4835030564"
+        },
+        {
+          "page": 1,
+          "type": "EMPLOYEE_ID",
+          "value": "EMP-1042"
+        },
+        {
+          "page": 2,
+          "type": "EMPLOYEE_ID",
+          "value": "EMP-1042"
+        },
+        {
+          "page": 3,
+          "type": "EMPLOYEE_ID",
+          "value": "EMP-1042"
+        },
+        {
+          "page": 1,
+          "type": "PERSON",
+          "value": "Nicole Day"
+        },
+        {
+          "page": 2,
+          "type": "PERSON",
+          "value": "Nicole Day"
+        },
+        {
+          "page": 3,
+          "type": "PERSON",
+          "value": "Nicole Day"
+        },
+        {
+          "page": 1,
+          "type": "SSN",
+          "value": "147-34-2288"
+        },
+        {
+          "page": 2,
+          "type": "SSN",
+          "value": "147-34-2288"
+        },
+        {
+          "page": 3,
+          "type": "SSN",
+          "value": "147-34-2288"
+        },
+        {
+          "page": 1,
+          "type": "SALARY",
+          "value": "$5,625.00"
+        },
+        {
+          "page": 2,
+          "type": "SALARY",
+          "value": "$5,625.00"
+        },
+        {
+          "page": 3,
+          "type": "SALARY",
+          "value": "$5,625.00"
+        },
+        {
+          "page": 1,
+          "type": "BANK_ACCOUNT",
+          "value": "18451462704"
+        },
+        {
+          "page": 2,
+          "type": "BANK_ACCOUNT",
+          "value": "18451462704"
+        },
+        {
+          "page": 3,
+          "type": "BANK_ACCOUNT",
+          "value": "18451462704"
+        },
+        {
+          "page": 1,
+          "type": "EMPLOYEE_ID",
+          "value": "EMP-1043"
+        },
+        {
+          "page": 2,
+          "type": "EMPLOYEE_ID",
+          "value": "EMP-1043"
+        },
+        {
+          "page": 3,
+          "type": "EMPLOYEE_ID",
+          "value": "EMP-1043"
+        },
+        {
+          "page": 1,
+          "type": "PERSON",
+          "value": "James Brooks"
+        },
+        {
+          "page": 2,
+          "type": "PERSON",
+          "value": "James Brooks"
+        },
+        {
+          "page": 3,
+          "type": "PERSON",
+          "value": "James Brooks"
+        },
+        {
+          "page": 1,
+          "type": "SSN",
+          "value": "166-70-8690"
+        },
+        {
+          "page": 2,
+          "type": "SSN",
+          "value": "166-70-8690"
+        },
+        {
+          "page": 3,
+          "type": "SSN",
+          "value": "166-70-8690"
+        },
+        {
+          "page": 1,
+          "type": "SALARY",
+          "value": "$7,166.67"
+        },
+        {
+          "page": 2,
+          "type": "SALARY",
+          "value": "$7,166.67"
+        },
+        {
+          "page": 3,
+          "type": "SALARY",
+          "value": "$7,166.67"
+        },
+        {
+          "page": 1,
+          "type": "BANK_ACCOUNT",
+          "value": "5787133150"
+        },
+        {
+          "page": 2,
+          "type": "BANK_ACCOUNT",
+          "value": "5787133150"
+        },
+        {
+          "page": 3,
+          "type": "BANK_ACCOUNT",
+          "value": "5787133150"
+        },
+        {
+          "page": 1,
+          "type": "EMPLOYEE_ID",
+          "value": "EMP-1044"
+        },
+        {
+          "page": 2,
+          "type": "EMPLOYEE_ID",
+          "value": "EMP-1044"
+        },
+        {
+          "page": 3,
+          "type": "EMPLOYEE_ID",
+          "value": "EMP-1044"
+        },
+        {
+          "page": 1,
+          "type": "PERSON",
+          "value": "Rebecca Heath"
+        },
+        {
+          "page": 2,
+          "type": "PERSON",
+          "value": "Rebecca Heath"
+        },
+        {
+          "page": 3,
+          "type": "PERSON",
+          "value": "Rebecca Heath"
+        },
+        {
+          "page": 1,
+          "type": "SSN",
+          "value": "073-66-3900"
+        },
+        {
+          "page": 2,
+          "type": "SSN",
+          "value": "073-66-3900"
+        },
+        {
+          "page": 3,
+          "type": "SSN",
+          "value": "073-66-3900"
+        },
+        {
+          "page": 1,
+          "type": "SALARY",
+          "value": "$9,291.67"
+        },
+        {
+          "page": 2,
+          "type": "SALARY",
+          "value": "$9,291.67"
+        },
+        {
+          "page": 3,
+          "type": "SALARY",
+          "value": "$9,291.67"
+        },
+        {
+          "page": 1,
+          "type": "BANK_ACCOUNT",
+          "value": "726247317810"
+        },
+        {
+          "page": 2,
+          "type": "BANK_ACCOUNT",
+          "value": "726247317810"
+        },
+        {
+          "page": 3,
+          "type": "BANK_ACCOUNT",
+          "value": "726247317810"
+        },
+        {
+          "page": 1,
+          "type": "EMPLOYEE_ID",
+          "value": "EMP-1045"
+        },
+        {
+          "page": 2,
+          "type": "EMPLOYEE_ID",
+          "value": "EMP-1045"
+        },
+        {
+          "page": 3,
+          "type": "EMPLOYEE_ID",
+          "value": "EMP-1045"
+        },
+        {
+          "page": 1,
+          "type": "PERSON",
+          "value": "Richard Olson"
+        },
+        {
+          "page": 2,
+          "type": "PERSON",
+          "value": "Richard Olson"
+        },
+        {
+          "page": 3,
+          "type": "PERSON",
+          "value": "Richard Olson"
+        },
+        {
+          "page": 1,
+          "type": "SSN",
+          "value": "886-52-0961"
+        },
+        {
+          "page": 2,
+          "type": "SSN",
+          "value": "886-52-0961"
+        },
+        {
+          "page": 3,
+          "type": "SSN",
+          "value": "886-52-0961"
+        },
+        {
+          "page": 1,
+          "type": "SALARY",
+          "value": "$7,916.67"
+        },
+        {
+          "page": 2,
+          "type": "SALARY",
+          "value": "$7,916.67"
+        },
+        {
+          "page": 3,
+          "type": "SALARY",
+          "value": "$7,916.67"
+        },
+        {
+          "page": 1,
+          "type": "BANK_ACCOUNT",
+          "value": "812191361939"
+        },
+        {
+          "page": 2,
+          "type": "BANK_ACCOUNT",
+          "value": "812191361939"
+        },
+        {
+          "page": 3,
+          "type": "BANK_ACCOUNT",
+          "value": "812191361939"
+        },
+        {
+          "page": 1,
+          "type": "EMPLOYEE_ID",
+          "value": "EMP-1046"
+        },
+        {
+          "page": 2,
+          "type": "EMPLOYEE_ID",
+          "value": "EMP-1046"
+        },
+        {
+          "page": 3,
+          "type": "EMPLOYEE_ID",
+          "value": "EMP-1046"
+        },
+        {
+          "page": 1,
+          "type": "PERSON",
+          "value": "Sarah Harris"
+        },
+        {
+          "page": 2,
+          "type": "PERSON",
+          "value": "Sarah Harris"
+        },
+        {
+          "page": 3,
+          "type": "PERSON",
+          "value": "Sarah Harris"
+        },
+        {
+          "page": 1,
+          "type": "SSN",
+          "value": "734-41-3911"
+        },
+        {
+          "page": 2,
+          "type": "SSN",
+          "value": "734-41-3911"
+        },
+        {
+          "page": 3,
+          "type": "SSN",
+          "value": "734-41-3911"
+        },
+        {
+          "page": 1,
+          "type": "SALARY",
+          "value": "$5,750.00"
+        },
+        {
+          "page": 2,
+          "type": "SALARY",
+          "value": "$5,750.00"
+        },
+        {
+          "page": 3,
+          "type": "SALARY",
+          "value": "$5,750.00"
+        },
+        {
+          "page": 1,
+          "type": "BANK_ACCOUNT",
+          "value": "9808412411"
+        },
+        {
+          "page": 2,
+          "type": "BANK_ACCOUNT",
+          "value": "9808412411"
+        },
+        {
+          "page": 3,
+          "type": "BANK_ACCOUNT",
+          "value": "9808412411"
+        },
+        {
+          "page": 1,
+          "type": "EMPLOYEE_ID",
+          "value": "EMP-1047"
+        },
+        {
+          "page": 2,
+          "type": "EMPLOYEE_ID",
+          "value": "EMP-1047"
+        },
+        {
+          "page": 3,
+          "type": "EMPLOYEE_ID",
+          "value": "EMP-1047"
+        },
+        {
+          "page": 1,
+          "type": "PERSON",
+          "value": "Tracy Whitehead"
+        },
+        {
+          "page": 2,
+          "type": "PERSON",
+          "value": "Tracy Whitehead"
+        },
+        {
+          "page": 3,
+          "type": "PERSON",
+          "value": "Tracy Whitehead"
+        },
+        {
+          "page": 1,
+          "type": "SSN",
+          "value": "867-07-1513"
+        },
+        {
+          "page": 2,
+          "type": "SSN",
+          "value": "867-07-1513"
+        },
+        {
+          "page": 3,
+          "type": "SSN",
+          "value": "867-07-1513"
+        },
+        {
+          "page": 1,
+          "type": "SALARY",
+          "value": "$5,916.67"
+        },
+        {
+          "page": 2,
+          "type": "SALARY",
+          "value": "$5,916.67"
+        },
+        {
+          "page": 3,
+          "type": "SALARY",
+          "value": "$5,916.67"
+        },
+        {
+          "page": 1,
+          "type": "BANK_ACCOUNT",
+          "value": "58692322602"
+        },
+        {
+          "page": 2,
+          "type": "BANK_ACCOUNT",
+          "value": "58692322602"
+        },
+        {
+          "page": 3,
+          "type": "BANK_ACCOUNT",
+          "value": "58692322602"
+        },
+        {
+          "page": 1,
+          "type": "EMPLOYEE_ID",
+          "value": "EMP-1048"
+        },
+        {
+          "page": 2,
+          "type": "EMPLOYEE_ID",
+          "value": "EMP-1048"
+        },
+        {
+          "page": 3,
+          "type": "EMPLOYEE_ID",
+          "value": "EMP-1048"
+        },
+        {
+          "page": 1,
+          "type": "PERSON",
+          "value": "Erik Haynes"
+        },
+        {
+          "page": 2,
+          "type": "PERSON",
+          "value": "Erik Haynes"
+        },
+        {
+          "page": 3,
+          "type": "PERSON",
+          "value": "Erik Haynes"
+        },
+        {
+          "page": 1,
+          "type": "SSN",
+          "value": "392-05-7712"
+        },
+        {
+          "page": 2,
+          "type": "SSN",
+          "value": "392-05-7712"
+        },
+        {
+          "page": 3,
+          "type": "SSN",
+          "value": "392-05-7712"
+        },
+        {
+          "page": 1,
+          "type": "SALARY",
+          "value": "$4,916.67"
+        },
+        {
+          "page": 2,
+          "type": "SALARY",
+          "value": "$4,916.67"
+        },
+        {
+          "page": 3,
+          "type": "SALARY",
+          "value": "$4,916.67"
+        },
+        {
+          "page": 1,
+          "type": "BANK_ACCOUNT",
+          "value": "5569816934"
+        },
+        {
+          "page": 2,
+          "type": "BANK_ACCOUNT",
+          "value": "5569816934"
+        },
+        {
+          "page": 3,
+          "type": "BANK_ACCOUNT",
+          "value": "5569816934"
+        },
+        {
+          "page": 1,
+          "type": "EMPLOYEE_ID",
+          "value": "EMP-1049"
+        },
+        {
+          "page": 2,
+          "type": "EMPLOYEE_ID",
+          "value": "EMP-1049"
+        },
+        {
+          "page": 3,
+          "type": "EMPLOYEE_ID",
+          "value": "EMP-1049"
+        },
+        {
+          "page": 1,
+          "type": "PERSON",
+          "value": "Ryan Rush"
+        },
+        {
+          "page": 2,
+          "type": "PERSON",
+          "value": "Ryan Rush"
+        },
+        {
+          "page": 3,
+          "type": "PERSON",
+          "value": "Ryan Rush"
+        },
+        {
+          "page": 1,
+          "type": "SSN",
+          "value": "339-80-5144"
+        },
+        {
+          "page": 2,
+          "type": "SSN",
+          "value": "339-80-5144"
+        },
+        {
+          "page": 3,
+          "type": "SSN",
+          "value": "339-80-5144"
+        },
+        {
+          "page": 1,
+          "type": "SALARY",
+          "value": "$5,375.00"
+        },
+        {
+          "page": 2,
+          "type": "SALARY",
+          "value": "$5,375.00"
+        },
+        {
+          "page": 3,
+          "type": "SALARY",
+          "value": "$5,375.00"
+        },
+        {
+          "page": 1,
+          "type": "BANK_ACCOUNT",
+          "value": "3699577738"
+        },
+        {
+          "page": 2,
+          "type": "BANK_ACCOUNT",
+          "value": "3699577738"
+        },
+        {
+          "page": 3,
+          "type": "BANK_ACCOUNT",
+          "value": "3699577738"
+        },
+        {
+          "page": 1,
+          "type": "EMPLOYEE_ID",
+          "value": "EMP-1050"
+        },
+        {
+          "page": 2,
+          "type": "EMPLOYEE_ID",
+          "value": "EMP-1050"
+        },
+        {
+          "page": 3,
+          "type": "EMPLOYEE_ID",
+          "value": "EMP-1050"
+        },
+        {
+          "page": 1,
+          "type": "PERSON",
+          "value": "Emily Walker"
+        },
+        {
+          "page": 2,
+          "type": "PERSON",
+          "value": "Emily Walker"
+        },
+        {
+          "page": 3,
+          "type": "PERSON",
+          "value": "Emily Walker"
+        },
+        {
+          "page": 1,
+          "type": "SSN",
+          "value": "204-19-0401"
+        },
+        {
+          "page": 2,
+          "type": "SSN",
+          "value": "204-19-0401"
+        },
+        {
+          "page": 3,
+          "type": "SSN",
+          "value": "204-19-0401"
+        },
+        {
+          "page": 1,
+          "type": "SALARY",
+          "value": "$6,125.00"
+        },
+        {
+          "page": 2,
+          "type": "SALARY",
+          "value": "$6,125.00"
+        },
+        {
+          "page": 3,
+          "type": "SALARY",
+          "value": "$6,125.00"
+        },
+        {
+          "page": 1,
+          "type": "BANK_ACCOUNT",
+          "value": "788957986872"
+        },
+        {
+          "page": 2,
+          "type": "BANK_ACCOUNT",
+          "value": "788957986872"
+        },
+        {
+          "page": 3,
+          "type": "BANK_ACCOUNT",
+          "value": "788957986872"
+        },
+        {
+          "page": 1,
+          "type": "EMPLOYEE_ID",
+          "value": "EMP-1051"
+        },
+        {
+          "page": 2,
+          "type": "EMPLOYEE_ID",
+          "value": "EMP-1051"
+        },
+        {
+          "page": 3,
+          "type": "EMPLOYEE_ID",
+          "value": "EMP-1051"
+        },
+        {
+          "page": 1,
+          "type": "PERSON",
+          "value": "Todd Allen"
+        },
+        {
+          "page": 2,
+          "type": "PERSON",
+          "value": "Todd Allen"
+        },
+        {
+          "page": 3,
+          "type": "PERSON",
+          "value": "Todd Allen"
+        },
+        {
+          "page": 1,
+          "type": "SSN",
+          "value": "451-10-4682"
+        },
+        {
+          "page": 2,
+          "type": "SSN",
+          "value": "451-10-4682"
+        },
+        {
+          "page": 3,
+          "type": "SSN",
+          "value": "451-10-4682"
+        },
+        {
+          "page": 1,
+          "type": "SALARY",
+          "value": "$7,333.33"
+        },
+        {
+          "page": 2,
+          "type": "SALARY",
+          "value": "$7,333.33"
+        },
+        {
+          "page": 3,
+          "type": "SALARY",
+          "value": "$7,333.33"
+        },
+        {
+          "page": 1,
+          "type": "BANK_ACCOUNT",
+          "value": "4668893734"
+        },
+        {
+          "page": 2,
+          "type": "BANK_ACCOUNT",
+          "value": "4668893734"
+        },
+        {
+          "page": 3,
+          "type": "BANK_ACCOUNT",
+          "value": "4668893734"
+        }
+      ]
+    },
+    {
+      "file": "personnel_file_johnson.pdf",
+      "kind": "Personnel file",
+      "scanned": false,
+      "pages": 3,
+      "pii": [
+        {
+          "page": 1,
+          "type": "PERSON",
+          "value": "Danielle Johnson"
+        },
+        {
+          "page": 1,
+          "type": "SSN",
+          "value": "282-32-3658"
+        },
+        {
+          "page": 1,
+          "type": "ADDRESS",
+          "value": "819 Johnson Course"
+        },
+        {
+          "page": 2,
+          "type": "SALARY",
+          "value": "$59,500.00"
+        },
+        {
+          "page": 1,
+          "type": "EMPLOYEE_ID",
+          "value": "EMP-1040"
+        },
+        {
+          "page": 1,
+          "type": "DOB",
+          "value": "05/13/1969"
+        },
+        {
+          "page": 1,
+          "type": "PHONE",
+          "value": "(312) 555-0138"
+        },
+        {
+          "page": 3,
+          "type": "PHONE",
+          "value": "(312) 555-0138"
+        },
+        {
+          "page": 1,
+          "type": "EMAIL",
+          "value": "danielle.johnson@example.com"
+        },
+        {
+          "page": 1,
+          "type": "PERSON",
+          "value": "Monica Herrera"
+        },
+        {
+          "page": 1,
+          "type": "PHONE",
+          "value": "(312) 555-0161"
+        },
+        {
+          "page": 1,
+          "type": "BANK_ROUTING",
+          "value": "073794026"
+        },
+        {
+          "page": 1,
+          "type": "BANK_ACCOUNT",
+          "value": "654235116155"
+        },
+        {
+          "page": 2,
+          "type": "SALARY",
+          "value": "$54,100.00"
+        },
+        {
+          "page": 2,
+          "type": "SALARY",
+          "value": "$57,100.00"
+        },
+        {
+          "page": 2,
+          "type": "PERSON",
+          "value": "Andrea Calderon"
+        },
+        {
+          "page": 3,
+          "type": "PERSON",
+          "value": "Andrea Calderon"
+        },
+        {
+          "page": 3,
+          "type": "PERSON",
+          "value": "Mx. Johnson"
+        },
+        {
+          "page": 1,
+          "type": "PERSON",
+          "value": "Danielle"
+        },
+        {
+          "page": 2,
+          "type": "PERSON",
+          "value": "Danielle"
+        },
+        {
+          "page": 3,
+          "type": "PERSON",
+          "value": "Danielle"
+        }
+      ]
+    },
+    {
+      "file": "personnel_file_heath.pdf",
+      "kind": "Personnel file",
+      "scanned": false,
+      "pages": 3,
+      "pii": [
+        {
+          "page": 1,
+          "type": "PERSON",
+          "value": "Rebecca Heath"
+        },
+        {
+          "page": 1,
+          "type": "SSN",
+          "value": "073-66-3900"
+        },
+        {
+          "page": 1,
+          "type": "ADDRESS",
+          "value": "82997 Kristen Valley Suite 311"
+        },
+        {
+          "page": 2,
+          "type": "SALARY",
+          "value": "$111,500.00"
+        },
+        {
+          "page": 1,
+          "type": "EMPLOYEE_ID",
+          "value": "EMP-1044"
+        },
+        {
+          "page": 1,
+          "type": "DOB",
+          "value": "12/03/1974"
+        },
+        {
+          "page": 1,
+          "type": "PHONE",
+          "value": "(312) 555-0110"
+        },
+        {
+          "page": 3,
+          "type": "PHONE",
+          "value": "(312) 555-0110"
+        },
+        {
+          "page": 1,
+          "type": "EMAIL",
+          "value": "rebecca.heath@example.com"
+        },
+        {
+          "page": 1,
+          "type": "PERSON",
+          "value": "Alexis Davis"
+        },
+        {
+          "page": 1,
+          "type": "PHONE",
+          "value": "(312) 555-0132"
+        },
+        {
+          "page": 1,
+          "type": "BANK_ROUTING",
+          "value": "075133384"
+        },
+        {
+          "page": 1,
+          "type": "BANK_ACCOUNT",
+          "value": "726247317810"
+        },
+        {
+          "page": 2,
+          "type": "SALARY",
+          "value": "$101,500.00"
+        },
+        {
+          "page": 2,
+          "type": "SALARY",
+          "value": "$107,000.00"
+        },
+        {
+          "page": 2,
+          "type": "PERSON",
+          "value": "Richard Olson"
+        },
+        {
+          "page": 3,
+          "type": "PERSON",
+          "value": "Richard Olson"
+        },
+        {
+          "page": 3,
+          "type": "PERSON",
+          "value": "Mx. Heath"
+        },
+        {
+          "page": 1,
+          "type": "PERSON",
+          "value": "Rebecca"
+        },
+        {
+          "page": 2,
+          "type": "PERSON",
+          "value": "Rebecca"
+        },
+        {
+          "page": 3,
+          "type": "PERSON",
+          "value": "Rebecca"
+        }
+      ]
+    },
+    {
+      "file": "leave_policy_2025.pdf",
+      "kind": "Leave policy",
+      "scanned": false,
+      "pages": 2,
+      "pii": []
+    },
+    {
+      "file": "scan_w4_olson.pdf",
+      "kind": "W-4",
+      "scanned": true,
+      "pages": 1,
+      "pii": [
+        {
+          "page": 1,
+          "type": "PERSON",
+          "value": "Richard Olson"
+        },
+        {
+          "page": 1,
+          "type": "SSN",
+          "value": "886-52-0961"
+        },
+        {
+          "page": 1,
+          "type": "ADDRESS",
+          "value": "4746 Moore Hill"
+        },
+        {
+          "page": 1,
+          "type": "EIN",
+          "value": "36-4817205"
+        }
+      ]
+    },
+    {
+      "file": "scan_personnel_file_heath.pdf",
+      "kind": "Personnel file",
+      "scanned": true,
+      "pages": 3,
+      "pii": [
+        {
+          "page": 1,
+          "type": "PERSON",
+          "value": "Rebecca Heath"
+        },
+        {
+          "page": 1,
+          "type": "SSN",
+          "value": "073-66-3900"
+        },
+        {
+          "page": 1,
+          "type": "ADDRESS",
+          "value": "82997 Kristen Valley Suite 311"
+        },
+        {
+          "page": 2,
+          "type": "SALARY",
+          "value": "$111,500.00"
+        },
+        {
+          "page": 1,
+          "type": "EMPLOYEE_ID",
+          "value": "EMP-1044"
+        },
+        {
+          "page": 1,
+          "type": "DOB",
+          "value": "12/03/1974"
+        },
+        {
+          "page": 1,
+          "type": "PHONE",
+          "value": "(312) 555-0110"
+        },
+        {
+          "page": 3,
+          "type": "PHONE",
+          "value": "(312) 555-0110"
+        },
+        {
+          "page": 1,
+          "type": "EMAIL",
+          "value": "rebecca.heath@example.com"
+        },
+        {
+          "page": 1,
+          "type": "PERSON",
+          "value": "Alexis Davis"
+        },
+        {
+          "page": 1,
+          "type": "PHONE",
+          "value": "(312) 555-0132"
+        },
+        {
+          "page": 1,
+          "type": "BANK_ROUTING",
+          "value": "075133384"
+        },
+        {
+          "page": 1,
+          "type": "BANK_ACCOUNT",
+          "value": "726247317810"
+        },
+        {
+          "page": 2,
+          "type": "SALARY",
+          "value": "$101,500.00"
+        },
+        {
+          "page": 2,
+          "type": "SALARY",
+          "value": "$107,000.00"
+        },
+        {
+          "page": 2,
+          "type": "PERSON",
+          "value": "Richard Olson"
+        },
+        {
+          "page": 3,
+          "type": "PERSON",
+          "value": "Richard Olson"
+        },
+        {
+          "page": 3,
+          "type": "PERSON",
+          "value": "Mx. Heath"
+        },
+        {
+          "page": 1,
+          "type": "PERSON",
+          "value": "Rebecca"
+        },
+        {
+          "page": 2,
+          "type": "PERSON",
+          "value": "Rebecca"
+        },
+        {
+          "page": 3,
+          "type": "PERSON",
+          "value": "Rebecca"
+        }
+      ]
+    }
+  ]
+}

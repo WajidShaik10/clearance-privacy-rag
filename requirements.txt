@@ -1,0 +1,29 @@
+# Testing
+pytest>=8
+
+# Milestone 1: fake documents
+faker
+reportlab
+
+# Milestone 2: read text (also needs the Tesseract app: brew install tesseract)
+pymupdf
+pdfplumber
+pytesseract
+
+# Milestone 3: find private info
+presidio-analyzer
+spacy
+
+# Milestone 4: locked safe (sqlite3 is built in)
+cryptography
+
+# Milestone 5: search library
+chromadb
+
+# Milestone 6: AI model (add anthropic and/or ollama once chosen)
+python-dotenv
+
+# Milestone 9: chat screen
+fastapi
+uvicorn
+streamlit

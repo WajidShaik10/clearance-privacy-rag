@@ -1,0 +1,9 @@
+[project]
+name = "privacy-safe-rag"
+version = "0.1.0"
+description = "Document Q&A over HR, payroll and tax files that never exposes personal data"
+requires-python = ">=3.11"
+
+[tool.pytest.ini_options]
+pythonpath = ["."]
+testpaths = ["tests"]
