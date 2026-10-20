@@ -1,0 +1,17 @@
+# Never send secrets or private stores to the Docker build.
+.env
+*.key
+data/vault/
+data/index/
+
+# Not needed in the image
+.git/
+.venv/
+__pycache__/
+*.pyc
+.pytest_cache/
+.DS_Store
+tests/
+data/external/
+data/templates/
+docs/

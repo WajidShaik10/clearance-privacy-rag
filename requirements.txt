@@ -1,29 +1,27 @@
-# Testing
-pytest>=8
+# What the app needs to run (also what the Docker image installs).
+# Exact versions: these are the ones every test passed with.
+# Also needed outside Python: Tesseract (brew install tesseract) and the spaCy
+# model (python -m spacy download en_core_web_lg).
 
-# Milestone 1: fake documents
-faker
-reportlab
+# Read PDFs, and OCR for scanned pages
+pymupdf==1.28.2
+pytesseract==0.3.13
+pillow==12.3.0
 
-# Milestone 2: read text (also needs the Tesseract app: brew install tesseract)
-pymupdf
-pdfplumber
-pytesseract
+# Find personal data (names)
+spacy==3.8.16
 
-# Milestone 3: find private info
-presidio-analyzer
-spacy
+# The vault (sqlite3 is built into Python)
+cryptography==50.0.2
+python-dotenv==1.2.4
 
-# Milestone 4: locked safe (sqlite3 is built in)
-cryptography
+# Search library (local embeddings + storage)
+chromadb==1.5.9
 
-# Milestone 5: search library
-chromadb
+# The AI that writes answers (only ever sees masked text)
+openai==3.35.1
 
-# Milestone 6: AI model (OpenAI; key in .env as OPENAI_API_KEY)
-openai
-python-dotenv
-
-# Milestone 9: chat page (FastAPI serves a custom HTML/CSS/JS page)
-fastapi
-uvicorn
+# Chat page and API
+fastapi==0.143.1
+uvicorn==0.54.0
+pydantic==2.14.1

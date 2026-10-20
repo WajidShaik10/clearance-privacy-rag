@@ -1,0 +1,6 @@
+# For development: running the tests and regenerating the fake documents.
+#   pip install -r requirements.txt -r requirements-dev.txt
+pytest==9.1.1
+httpx==0.28.1     # FastAPI's test client
+Faker==40.43.0    # fake people for the test documents
+reportlab==5.0.1  # building the test PDFs

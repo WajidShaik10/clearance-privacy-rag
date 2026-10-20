@@ -1,0 +1,15 @@
+# docker compose up --build    then open http://127.0.0.1:8000
+services:
+  clearance:
+    build: .
+    env_file: .env          # vault keys + OPENAI_API_KEY; never copied into the image
+    ports:
+      - "127.0.0.1:8000:8000"   # this computer only, not the network
+    volumes:
+      - vault:/app/data/vault   # encrypted real values + audit log
+      - index:/app/data/index   # masked search library
+    restart: unless-stopped
+
+volumes:
+  vault:
+  index:
