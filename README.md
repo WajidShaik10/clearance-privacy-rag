@@ -25,6 +25,7 @@ source .venv/bin/activate
 pip install -r requirements.txt
 python -m spacy download en_core_web_lg   # name-finding model (~400 MB)
 brew install tesseract                    # OCR for scanned pages
+python -m src.vault                       # create the two vault keys in .env (never committed)
 python scripts/make_fake_docs.py          # 22 fake PDFs + data/answer_key.json
 pytest
 python scripts/evaluate_detection.py      # PII detection score vs the answer key
