@@ -5,12 +5,14 @@ The same detector scans documents at ingestion (step 3) and every AI answer
 before it reaches the user (step 11), so the safety check is never weaker
 than ingestion. It only FINDS private data; mask.py hides it.
 
-Three layers, because no single method catches everything:
+Four layers, because no single method catches everything:
   1. Patterns: fixed formats (SSN, phone, email...) plus checks such as the
      bank routing checksum, and context words ("routing", "date of birth").
-  2. Known names: employee names from HR's roster, plus the forms people use
+  2. Labelled fields: the value after a label such as "Full Name:",
+     "Signature:", "Employee ID:" or "IBAN:".
+  3. Known names: employee names from HR's roster, plus the forms people use
      in writing ("Rebecca", "Mx. Heath") once the full name is on the page.
-  3. AI (spaCy): spots other people's names (contractors, emergency contacts).
+  4. AI (spaCy): spots other people's names (contractors, emergency contacts).
 """
 
 import re
@@ -27,7 +29,7 @@ class Finding:
     value: str  # the exact text found
     start: int  # position in the text
     end: int
-    source: str  # which layer found it: "pattern", "roster", "variant" or "ai"
+    source: str  # which layer found it: "pattern", "label", "roster", "variant" or "ai"
 
 
 # ---------------------------------------------------------------- checks on numbers
@@ -90,7 +92,13 @@ PATTERNS = [
     # Tax forms print one digit per box, so an SSN/ITIN can come out as "9 7 5 9 2 9 2 4 6".
     Pattern("TAX_ID", _rx(r"(?<!\d)(?<!\d )\d(?: \d){8}(?! ?\d)"), check=lambda d: valid_ssn(d) or valid_itin(d)),
     Pattern("EIN", _rx(r"\b\d{2}-\d{7}\b")),
-    Pattern("PHONE", _rx(r"\(\d{3}\) ?\d{3}-\d{4}|\b\d{3}[-.]\d{3}[-.]\d{4}\b")),
+    # "(312) 555-0110", "312-555-0110", "+1-123-456-7890", "1-800-123-4567", "+1 (800) 123-4567"
+    Pattern("PHONE", _rx(r"(?<![\w-])(?:\+?1[-. ]?)?(?:\(\d{3}\) ?|\d{3}[-. ])\d{3}[-. ]\d{4}\b")),
+    # Ten plain digits only count as a phone number next to a phone word.
+    Pattern("PHONE", _rx(r"\b\d{10}\b"), context=_rx(r"phone|\btel\b|mobile|\bcell\b|\bfax\b", re.I), window=30),
+    # International bank account number: country code, 2 check digits, then the account.
+    Pattern("BANK_ACCOUNT", _rx(r"\b[A-Z]{2}\d{2}(?: ?[A-Z0-9]{4}){2,7}(?: ?[A-Z0-9]{1,4})?\b"),
+            check=lambda d: len(d) >= 8),
     Pattern("EMPLOYEE_ID", _rx(r"\bEMP-\d{3,6}\b")),
     # Dates are only private when they are a birth date.
     Pattern("DOB", _rx(r"\b\d{1,2}/\d{1,2}/\d{4}\b"),
@@ -101,7 +109,9 @@ PATTERNS = [
     Pattern("ADDRESS", _rx(
         r"\b\d{1,6}(?: (?:N|S|E|W|NE|NW|SE|SW)\.?)?(?: [A-Z][A-Za-z'.-]*){1,4}? "
         r"(?:" + "|".join(STREET_SUFFIXES) + r")\b\.?"
-        r"(?:,? (?:Apt\.?|Suite|Unit|#) ?[\w-]+)?")),
+        r"(?:,? (?:Apt\.?|Suite|Unit|#) ?[\w-]+)?"
+        # The address may go on: ", Anytown", ", 39502", ", USA", ", IL 60608".
+        r"(?:, (?:[A-Z][a-z]+(?: [A-Z][a-z]+){0,2}|[A-Z]{2,3}(?: \d{5}(?:-\d{4})?)?|\d{5}(?:-\d{4})?)\b){0,3}")),
     Pattern("ADDRESS", _rx(r"\b[A-Z][a-z]+(?: [A-Z][a-z]+)*, [A-Z]{2} \d{5}(?:-\d{4})?\b")),  # city, ST zip
     # Any money amount: "$4,958.33", "-$694.17", and form boxes like "59500.00".
     Pattern("MONEY", _rx(r"-?\$ ?\d{1,3}(?:,\d{3})*(?:\.\d{2})?\b|\b\d{1,3}(?:,\d{3})+\.\d{2}\b|\b\d{3,}\.\d{2}\b")),
@@ -113,6 +123,14 @@ ORGANIZATION_ALLOW_LIST = {
     "200 W Lakeview Ave, Suite 900",
     "Chicago, IL 60606",
 }
+
+
+def is_organization(value: str) -> bool:
+    """True if the value is only the company's own public details (in any combination)."""
+    rest = " ".join(value.split())
+    for item in sorted(ORGANIZATION_ALLOW_LIST, key=len, reverse=True):
+        rest = rest.replace(item, "")
+    return not rest.strip(" ,")
 
 
 def digits_of(text: str) -> str:
@@ -136,10 +154,42 @@ def find_patterns(text: str) -> list[Finding]:
     return found
 
 
-# ---------------------------------------------------------------- layers 2 and 3: names
+# ---------------------------------------------------------------- layer 2: labelled fields
 
 TITLES = r"(?:Mr|Mrs|Ms|Mx|Dr)\.?"
-NAME_WORD = re.compile(r"^[A-Z][a-zA-Z'’-]+$")
+# One word of a name: "Lefort-Auger", "O'Neil", "Simón", or an initial "A."
+_NAME_PART = r"(?:[A-Z]\.|[A-ZÀ-Þ][^\W\d_]+(?:[-'’][A-ZÀ-Þ]?[^\W\d_]+)*)"
+_NAME_VALUE = rf"(?P<value>{_NAME_PART}(?: {_NAME_PART}){{0,3}})"
+
+LABELLED = [
+    ("PERSON", _rx(
+        r"\b(?:(?:Full|First|Last|Middle|Legal|Customer|Client|Account Holder|Contact|Employee)'?s? Name"
+        r"|Name|Signature|Signed by|Borrower|Co-Borrower|Claimant|Applicant|Insured|Policyholder"
+        r"|Beneficiary|Patient|User|Attn|Attention|Prepared by|Reviewer)\s*:(?:\*\*)?[ \t]*" + _NAME_VALUE)),
+    ("PERSON", _rx(r"\b(?:[Mm]y name is|Dear(?: " + TITLES + r")?) " + _NAME_VALUE)),
+    # Chat logs: "[2022-08-15 14:31:21] - Paul Sanders: Hi, ..."
+    ("PERSON", _rx(r"\] - " + _NAME_VALUE + r":")),
+    ("EMPLOYEE_ID", _rx(r"\bemployee[ _]?(?:id|number|no\.?|#)\s*[:#]?\s*(?:is\s+)?"
+                        r"(?P<value>[A-Za-z0-9](?:[A-Za-z0-9-]*\d[A-Za-z0-9-]*))", re.I)),
+    ("BANK_ACCOUNT", _rx(r"\b(?:IBAN|BBAN|account (?:number|no\.?|#)|acct\.? ?(?:no\.?|#)?)\s*[:#]?\s*"
+                         r"(?P<value>[A-Z0-9](?:[A-Z0-9 -]{4,40}[A-Z0-9])?)", re.I)),
+]
+
+
+def find_labelled(text: str) -> list[Finding]:
+    found = []
+    for pii_type, rx in LABELLED:
+        for m in rx.finditer(text):
+            value = m.group("value")
+            if pii_type == "BANK_ACCOUNT" and len(digits_of(value)) < 5:
+                continue  # "Account number Amount" is a table header, not a value
+            found.append(Finding(pii_type, value, m.start("value"), m.end("value"), "label"))
+    return found
+
+
+# ---------------------------------------------------------------- layers 3 and 4: names
+
+NAME_WORD = re.compile(rf"^{_NAME_PART}$")
 
 
 def _name_regex(name: str) -> re.Pattern:
@@ -238,15 +288,20 @@ def find_pii(text: str, known_names: Iterable[str] = (), other_names: Iterable[s
     other_names: names found elsewhere in the same document by the AI.
     """
     known_names, other_names = set(known_names), set(other_names)
-    findings = (find_patterns(text) + find_known_names(text, known_names | other_names)
-                + find_ai_names(text))
-    findings = [f for f in findings if " ".join(f.value.split()) not in ORGANIZATION_ALLOW_LIST]
+    findings = (find_patterns(text) + find_labelled(text)
+                + find_known_names(text, known_names | other_names) + find_ai_names(text))
+    findings = [f for f in findings if not is_organization(f.value)]
     # Settle overlaps first, so an AI "name" that is really part of an address
     # ("Kristen Valley") is dropped before we look for variants of it.
     findings = resolve_overlaps(merge_addresses(findings, text))
-    ai_names = other_names | {" ".join(f.value.split()) for f in findings if f.source == "ai"}
-    variants = (find_name_variants(text, known_names, first_names=True)
-                + find_name_variants(text, ai_names - known_names, first_names=False))
+    # Names we are sure of (roster, or written after a label like "Full Name:") also
+    # match by first name; AI guesses only match as "Mx. Last".
+    sure_names = known_names | {" ".join(f.value.split()) for f in findings
+                                if f.type == "PERSON" and f.source == "label"}
+    ai_names = other_names | {" ".join(f.value.split()) for f in findings
+                              if f.type == "PERSON" and f.source == "ai"}
+    variants = (find_name_variants(text, sure_names, first_names=True)
+                + find_name_variants(text, ai_names - sure_names, first_names=False))
     return resolve_overlaps(findings + variants)
 
 
@@ -258,7 +313,8 @@ def find_pii_in_document(page_texts: list[str], known_names: Iterable[str] = ())
     """
     known_names = set(known_names)
     first_pass = [find_pii(text, known_names) for text in page_texts]
-    ai_names = {" ".join(f.value.split()) for page in first_pass for f in page if f.source == "ai"}
+    ai_names = {" ".join(f.value.split()) for page in first_pass for f in page
+                if f.type == "PERSON" and f.source in ("ai", "label")}
     if not ai_names:
         return first_pass  # nothing new to look for
     return [find_pii(text, known_names, ai_names) for text in page_texts]

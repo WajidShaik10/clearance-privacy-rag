@@ -117,6 +117,55 @@ def test_names_carry_across_pages_of_a_document():
     assert [(f.type, f.value) for f in find_pii_in_document(pages, ROSTER)[1]] == [("PERSON", "Rebecca")]
 
 
+# ---------------------------------------------------------------- formats added after testing on unseen data
+
+@pytest.mark.parametrize("phone", ["+1-123-456-7890", "1-800-123-4567", "+1 (800) 123-4567", "312.555.0110"])
+def test_phone_formats(phone):
+    assert found(f"call {phone} today") == [("PHONE", phone)]
+
+
+def test_ten_plain_digits_are_a_phone_only_next_to_a_phone_word():
+    assert found("Phone: 6774125602") == [("PHONE", "6774125602")]
+    assert found("Invoice 6774125602") == []
+
+
+def test_iban_found():
+    assert ("BANK_ACCOUNT", "GB36LUIE38711470005097") in found("pay to GB36LUIE38711470005097")
+
+
+def test_street_address_continues_into_city_and_country():
+    assert found("Ship to 123 Maple Street, Anytown, USA.") == [("ADDRESS", "123 Maple Street, Anytown, USA")]
+
+
+@pytest.mark.parametrize("text, name", [
+    ("Signature: Luigi Clelia Togliatti", "Luigi Clelia Togliatti"),
+    ("Full Name: John Doe", "John Doe"),
+    ("Borrower: Pedro", "Pedro"),
+    ("**User:** Annibale Caboto ([email])", "Annibale Caboto"),
+    ("Dear Mr. Booth,", "Booth"),
+    ("Hi, my name is Ilaria.", "Ilaria"),
+    ("[2022-08-15 14:31:21] - Paul Sanders: Hi, I need help", "Paul Sanders"),
+    ("Reviewer: Richard Olson. Rebecca met deadlines.", "Richard Olson"),  # stops at the full stop
+])
+def test_names_after_labels(text, name):
+    assert ("PERSON", name) in found(text)
+
+
+def test_first_name_of_a_labelled_name_is_found_later():
+    text = "**User:** Annibale Caboto\nUpdated Annibale's access level."
+    assert ("PERSON", "Annibale") in found(text)
+
+
+def test_labelled_ids_and_accounts():
+    assert ("EMPLOYEE_ID", "Nm-80877") in found("My employee_id is Nm-80877")
+    assert ("BANK_ACCOUNT", "RBKJ59644698401273") in found("BBAN: RBKJ59644698401273")
+
+
+def test_account_table_header_is_not_an_account():
+    # On our payslip, "Account number Amount" is a header followed by a word, not a number.
+    assert found("Bank Routing number Account number Amount") == []
+
+
 # ---------------------------------------------------------------- the guard (step 11)
 
 def test_guard_flags_an_answer_with_pii():
@@ -147,3 +196,18 @@ def test_every_private_value_in_the_answer_key_is_found(evaluation):
 
 def test_no_false_alarms_on_the_policy_document(evaluation):
     assert evaluation["policy_findings"] == []
+
+
+# ---------------------------------------------------------------- unseen documents (Gretel)
+
+def test_recall_on_unseen_documents_does_not_drop():
+    # A guard against changes that quietly make detection worse. The held-out
+    # test split scored 68.1% (up from 41.0%); this fails if it drops below 65%.
+    from scripts.evaluate_unseen import DATA, IN_SCOPE, evaluate
+
+    if not list(DATA.glob("rows_*.json")):
+        pytest.skip("Gretel sample not downloaded")
+    r = evaluate("test")
+    caught = sum(r["caught"][label] for label in IN_SCOPE)
+    total = sum(r["total"][label] for label in IN_SCOPE)
+    assert caught / total >= 0.65

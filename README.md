@@ -28,6 +28,7 @@ brew install tesseract                    # OCR for scanned pages
 python scripts/make_fake_docs.py          # 22 fake PDFs + data/answer_key.json
 pytest
 python scripts/evaluate_detection.py      # PII detection score vs the answer key
+python scripts/evaluate_unseen.py test    # PII detection score on unseen documents (Gretel)
 ```
 
 ## Test data
