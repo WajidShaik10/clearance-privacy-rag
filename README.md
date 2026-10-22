@@ -49,6 +49,9 @@ Measured on the fake test documents and on unseen data (see [Evaluation](#evalua
 | HR answers contain the correct value (live, OpenAI) | **12 / 12** |
 | Real model obeyed an instruction hidden in a document | **0 / 3** |
 | Automated tests | **371 passing** |
+| CI on every push (GitHub Actions, clean Linux machine) | **All tests pass** and the Docker image builds |
+
+CI paid off on its first run: it failed on a clean machine because the search model's tokenizer file is only downloaded on first use, which never showed up on a laptop where the model was already cached. Reproducing it with an empty home folder led to a three-line fix.
 
 ## Protections, layer by layer
 
@@ -70,6 +73,20 @@ Measured on the fake test documents and on unseen data (see [Evaluation](#evalua
 - **Employees can't ask about their own data** (it would need a link between a login and a placeholder).
 - **All money amounts are hidden**, including tax thresholds on forms: safer, but some rule questions get masked numbers.
 - **Word-based question rules can be dodged**; masking and the final check still keep the answer sealed.
+
+## Path to production
+
+This is a working prototype, tested on fictional data. A real deployment would need:
+
+| Area | Today | Production |
+|---|---|---|
+| Sign-in | Demo picker (Oliver or Charlotte) | Company single sign-on, with roles from the HR system |
+| Detection | 68% recall on unseen documents | Higher recall, card and passport detection, and human review of documents before ingestion |
+| Keys | `.env` file on one machine | A key management service (AWS KMS, Azure Key Vault) with rotation and access controls |
+| Hosting | 127.0.0.1 only | HTTPS, network controls, backups, monitoring and alerting |
+| AI provider | OpenAI with `store=False` | A data processing agreement and zero data retention with the provider |
+| Compliance | None | Review against privacy law (GDPR, CCPA) and company policy, and an independent penetration test |
+| Operations | Audit log in SQLite | Central logging, incident response, and regular access reviews |
 
 ## Run without Docker
 
