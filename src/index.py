@@ -27,9 +27,11 @@ PLACEHOLDER = re.compile(r"\b[A-Z][A-Z_]*_\d+\b")
 
 @lru_cache(maxsize=1)
 def _tokenizer():
-    from chromadb.utils.embedding_functions import ONNXMiniLM_L6_V2
-
-    return ONNXMiniLM_L6_V2().tokenizer
+    # The tokenizer file only exists once the model has been downloaded, which ChromaDB does on
+    # the first embedding. On a fresh machine (CI) chunking runs first, so embed once to fetch it.
+    embedder = _embedder()
+    embedder(["warm up"])
+    return embedder.tokenizer
 
 
 def count_tokens(text: str) -> int:
