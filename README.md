@@ -1,5 +1,7 @@
 # Clearance: a privacy-safe RAG assistant for HR documents
 
+[![CI](https://github.com/WajidShaik10/clearance-privacy-rag/actions/workflows/ci.yml/badge.svg)](https://github.com/WajidShaik10/clearance-privacy-rag/actions/workflows/ci.yml)
+
 Ask plain-English questions about HR, payroll and tax documents and get answers with page citations, **without the AI model ever seeing personal data**. Names, SSNs, salaries and bank details are replaced with placeholders like `PERSON_5` before anything is stored or sent to the model. The real values sit in an encrypted vault; only HR can unseal them, and every reveal is logged.
 
 ![HR sees real values, unsealed and logged](docs/screenshots/hr-light.png)
@@ -96,6 +98,8 @@ python -m src.pipeline "What is Rebecca Heath's annual base salary?" --user char
 ```
 
 ## Evaluation
+
+**CI/CD:** every push runs all tests on a clean Linux machine and checks the Docker image builds ([`ci.yml`](.github/workflows/ci.yml)). Publishing a release builds the image and pushes it to GitHub Container Registry ([`release.yml`](.github/workflows/release.yml)). No secrets are used: the one live OpenAI test skips itself without a key.
 
 ```bash
 pytest                                   # 371 tests (offline; no API calls)
